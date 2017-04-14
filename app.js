@@ -29,7 +29,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(flash());
 app.use(session({
-    cookie: { maxAge: 60000 },
+
+    cookie: { maxAge: 1000 },
+
     secret: 'woot',
     resave: false,
     saveUninitialized: false
@@ -45,6 +47,7 @@ configRoutes(app);
 
 
 app.listen(3000, () => {
+
     console.log("We've now got a server!");
     console.log("Your routes will be running on http://localhost:3000");
 });
