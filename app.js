@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(flash());
 app.use(session({
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 1000 },
     secret: 'woot',
     resave: false,
     saveUninitialized: false

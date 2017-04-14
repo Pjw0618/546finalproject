@@ -47,6 +47,12 @@ router.get("/private", (req, res, next) => {
     }
 });
 
+router.get('/logout', function(req, res){
+    
+  req.logout();
+
+  res.redirect('/');
+});
 
 router.post('/login',
     passport.authenticate('local', {
