@@ -4,6 +4,7 @@ const app = express();
 const static = express.static(__dirname + '/public');
 const path = require("path");
 
+
 const configRoutes = require("./routes");
 
 const exphbs = require('express-handlebars');
@@ -42,6 +43,13 @@ app.use(passport.session());
 app.engine('handlebars', exphbs({ defaultLayout: 'main', extname: '.handlebars' }));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
+
+
+app.get('/register',(req,res)=>{
+    
+    res.render("layouts/register");
+    
+});
 
 configRoutes(app);
 
