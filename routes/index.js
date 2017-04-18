@@ -5,8 +5,8 @@ const registerRoutes = require('./register');
 const constructorMethod = (app) => {
 	
     app.use("/", loginRoutes);
-    app.use("/register", registerRoutes);
-    
+    app.use("/", registerRoutes);
+
     //  app.use("*", (req, res) => {
     //     res.status(404).json({error: "Not found"});
     // });
