@@ -30,8 +30,8 @@ router.post("/register", (req, res) => {
     // }
     Register.registerUser(req.body.username,req.body.password,req.body.reenterpassword).then(()=>{
     	
-        
 		res.render("layouts/profile");
+
 
     },(reject)=>{
 
