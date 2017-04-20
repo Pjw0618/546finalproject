@@ -5,6 +5,34 @@ const bcrypt = require('bcrypt');
 
 let exportedMethods = {
 
+    addNewUsers(username, password) {
+        return new Promise((resolve, recject) => {
+            return users().then((userCollection) => {
+                let ID = uuid.v4();
+                let newUser = {
+                    _id: ID,
+                    username: username,
+                    hashedPassword: bcrypt.hashSync(password, 10),
+                    profile: {
+                        name: "Unset",
+                        hobby: "Unset",
+                        _id: ID
+                    },
+                    order_history: [],
+                    shopping_cart: []
+                };
+                console.log("addNewUsers!");
+                return;
+                return userCollection.insertOne(newUser).then((newInsertInformation) => {
+                    return newInsertInformation._id;
+                }).then((newUserId) => {
+                    return this.getUserById(newUserId);
+                });
+            });
+        }).catch((Error) => {
+            return Promise.reject(Error);
+        });
+    },
     getAllUsers() {
         return new Promise((resolve, recject) => {
             return users().then((userCollection) => {
@@ -20,7 +48,7 @@ let exportedMethods = {
             return users().then((userCollection) => {
                 return userCollection.findOne({ _id: id }).then((user) => {
                     if (!user) Promise.reject("User not found");
-                    resolve(user);
+                    resolve(user);   
                 });
             });
         }).catch((Error) => {
@@ -32,9 +60,10 @@ let exportedMethods = {
         return new Promise((resolve, recject) => {
             return users().then((userCollection) => {
                 return userCollection.findOne({ username: username }).then(() => {
-                    Promise.reject("This username has been registered, please try another!");
+                    return Promise.reject("This username has been registered, please try another!");
                 });
-               Promise.resolve(true);
+                console.log("getUserByUsernameForRegister");
+                return resolve(true);
             });
         }).catch((Error) => {
             return Promise.reject(Error);

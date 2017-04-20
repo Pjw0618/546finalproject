@@ -1,7 +1,7 @@
 {
   "name": "lab9",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is cs 546 final project, mainly to establish a shopping website 1. start project via npm start use git bash or any other command tool you like.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -17,8 +17,18 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.2",
     "mongodb": "^2.2.25",
+    "node-pre-gyp": "^0.6.34",
     "node-uuid": "^1.4.8",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FFTi/546finalproject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FFTi/546finalproject/issues"
+  },
+  "homepage": "https://github.com/FFTi/546finalproject#readme"
 }
