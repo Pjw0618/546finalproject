@@ -2,7 +2,6 @@ const path = require('path');
 const loginRoutes = require('./login');
 const registerRoutes = require('./register');
 const profileRoutes = require('./profile');
-const profileRoutes = require('./profile');
 
 const constructorMethod = (app) => {
 
