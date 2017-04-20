@@ -7,8 +7,13 @@ const path = require('path');
 console.log("register");
 
 router.post("/register", (req, res) => {
+  Register.registerUser(username, password, reenterpassword).then(() => {
+    Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(() => {
 
+      res.render("layouts/login");
+      res.render("layouts/profile");
 
+<<<<<<< HEAD
 
     // if(!(req.body.username.length >= 6 && req.body.username.length <= 10)){
     // 	console.log(req.body.username);
@@ -37,10 +42,9 @@ router.post("/register", (req, res) => {
     },(reject)=>{
 
     	res.render("layouts/register",{message: `${reject}`});
+
     });
-
-
-});
-
+  })
+})
 
 module.exports = router;
