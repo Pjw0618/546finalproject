@@ -27,6 +27,7 @@ let exportedMethods = {
 		    	reject("your password does not match the first time you enter");
 		    }else{
 		    	//db operation, insert data to db
+		    	
 		    	resolve();
 		    }
 
