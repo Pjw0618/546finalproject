@@ -24,7 +24,6 @@ let exportedMethods = {
 
 			} else if (password !== reenterpassword) {
 
-<<<<<<< HEAD
 				reject("your password does not match the first time you enter");
 			} else {
 				//db operation, insert data to db
@@ -39,21 +38,8 @@ let exportedMethods = {
 					return Promise.reject(Error);
 				});
 			}
-=======
-		    	reject("your password does not match the first time you enter");
-		    }else{
-		    	//db operation, insert data to db
-		    	
-		    	resolve();
-		    }
->>>>>>> 9b52077c0aa156cf41830ea43231466efebcc76b
-
-		});
-
+		})
 	}
-
-
-
 }
 
 module.exports = exportedMethods;
