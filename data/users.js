@@ -54,6 +54,23 @@ let exportedMethods = {
         }).catch((Error) => {
             return Promise.reject(Error);
         });
+    },
+
+    updateProfile(name,hobby){
+
+        return new Promise((resolve, recject) =>{
+
+            if(name === undefined) return recject("name can't be null");
+             //find name in user collection and update profile, pay attention for _id attritube
+
+             return resolve();
+        }).catch((Error) => {
+            return Promise.reject(Error);
+        });
+        
+
+       
+
     }
 
 }

@@ -28,9 +28,10 @@ router.post("/register", (req, res) => {
     // 	//db operation, insert data to db
     // 	res.render("layouts/login");
     // }
-    Register.registerUser(username,password,reenterpassword).then(()=>{
+    Register.registerUser(req.body.username,req.body.password,req.body.reenterpassword).then(()=>{
     	
-		res.render("layouts/login");
+		res.render("layouts/profile");
+
 
     },(reject)=>{
 

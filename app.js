@@ -51,6 +51,11 @@ app.get('/register',(req,res)=>{
     
 });
 
+app.get('/profile',(req,res)=>{
+
+    res.render("layouts/profile");
+});
+
 configRoutes(app);
 
 
