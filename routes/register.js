@@ -28,6 +28,7 @@ router.post("/register", (req, res) => {
     // 	//db operation, insert data to db
     // 	res.render("layouts/login");
     // }
+    console.log(req);
     Register.registerUser(req.body.username,req.body.password,req.body.reenterpassword).then(()=>{
     	
 		res.render("layouts/profile");
