@@ -29,8 +29,9 @@ passport.deserializeUser(function (user, done) {
 });
 
 router.get("/", (req, res) => {
-
+    
     if (req.user) {
+
         res.redirect("private");
     }
     else {
