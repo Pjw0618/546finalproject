@@ -64,14 +64,12 @@ router.get('/logout', function(req, res){
 
 
 router.post('/login',
-    passport.authenticate('local', {
+    passport.authenticate('local',{
         successRedirect: '/private',
         successFlash: 'Welcome!',
         failureRedirect: '/',
         failureFlash: 'Invalid username or password.',
-        failureFlash: true
-    })
-);
+        failureFlash: true}));
 
 
 
