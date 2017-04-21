@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 let exportedMethods = {
     addNewUsers(username, password) {
         return new Promise((resolve, recject) => {
-            return users().then((userCollection) => {
+            users().then((userCollection) => {
                 let ID = uuid.v4();
                 let newUser = {
                     _id: ID,
@@ -21,11 +21,13 @@ let exportedMethods = {
                     shopping_cart: []
                 };
                 console.log("addNewUsers!");
-                return;
-                return userCollection.insertOne(newUser).then((newInsertInformation) => {
-                    return newInsertInformation._id;
-                }).then((newUserId) => {
-                    return this.getUserById(newUserId);
+                userCollection.insertOne(newUser).then(() => {
+                    //     return Promise.resolve(newInsertInformation._id);
+                    // }).then((newUserId) => {
+                    //     return this.getUserById(newUserId);
+                    console.log("Inserted!");
+                    console.log(username);
+                    return resolve(true);
                 });
             });
         }).catch((Error) => {
@@ -67,14 +69,19 @@ let exportedMethods = {
             return Promise.reject(Error);
         });
     },
+
     getUserByUsernameForRegister(username) {
         return new Promise((resolve, recject) => {
+          
             return users().then((userCollection) => {
-                return userCollection.findOne({ username: username }).then(() => {
-                    return Promise.reject("This username has been registered, please try another!");
+               
+                userCollection.findOne({ username: username }).then((finded) => {
+                    if (!finded) return resolve(true);
+                    Promise.reject("This username has been registered, please try another!");
+                   
+                }).catch((error) => {
+                    console.log(error);
                 });
-                console.log("getUserByUsernameForRegister");
-                return resolve(true);
             });
         }).catch((Error) => {
             return Promise.reject(Error);
