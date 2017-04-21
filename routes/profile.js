@@ -7,11 +7,12 @@ const path = require('path');
 
 router.post('/profile',(req,res)=>{
 
+	let id = req.user._id;
 	let name = req.body.name;
 	let hobby = req.body.hobby;
 
-	User.updateProfile(name,hobby).then(()=>{
-		console.log(1);
+	User.updateProfile(id,name,hobby).then(()=>{
+		
 		res.render('layouts/shopping');
 
 	},(reject)=>{
