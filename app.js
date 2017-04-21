@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(flash());
 app.use(session({
 
-    cookie: { maxAge: 1000 },
+    cookie: { maxAge: 100000 },
 
     secret: 'woot',
     resave: false,
