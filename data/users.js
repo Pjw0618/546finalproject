@@ -57,14 +57,17 @@ let exportedMethods = {
         });
     },
 
-    updateProfile(name, hobby) {
+    updateProfile(id,name, hobby) {
 
         return new Promise((resolve, recject) => {
 
             if (name === undefined) return recject("name can't be null");
             //find name in user collection and update profile, pay attention for _id attritube
+            getUserById(id).then((userCollection)=>{
+               //use user collection to insert name and hobby to db
 
-            return resolve();
+
+            });
         }).catch((Error) => {
             return Promise.reject(Error);
         });
