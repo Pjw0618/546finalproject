@@ -72,13 +72,13 @@ let exportedMethods = {
 
     getUserByUsernameForRegister(username) {
         return new Promise((resolve, recject) => {
-          
+
             return users().then((userCollection) => {
-               
+
                 userCollection.findOne({ username: username }).then((finded) => {
                     if (!finded) return resolve(true);
                     Promise.reject("This username has been registered, please try another!");
-                   
+
                 }).catch((error) => {
                     console.log(error);
                 });
@@ -92,15 +92,18 @@ let exportedMethods = {
         return new Promise((resolve, recject) => {
             if (username === undefined) return Promise.reject("No username provided");
             if (password === undefined) return Promise.reject("No password provided");
-
-            return userCollection.findOne({ username: username }).then((user) => {
-                let res = bcrypt.compareSync(password, user.password);
-                if (!res) Promise.reject("Invalid username or password!");
-                resolve(user);
+            users().then((userCollection) => {
+                userCollection.findOne({ username: username }).then((user) => {
+                    console.log(password);
+                    console.log(user);
+                    let res = bcrypt.compareSync(password, user.hashedPassword);
+                    if (!res) Promise.reject("Invalid username or password!");
+                    return resolve(user);
+                });
+            }).catch((Error) => {
+                return Promise.reject(Error);
             });
-        }).catch((Error) => {
-            return Promise.reject(Error);
-        });
+        })
     }
 }
 
