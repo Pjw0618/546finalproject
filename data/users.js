@@ -97,8 +97,6 @@ let exportedMethods = {
             if (password === undefined) return Promise.reject("No password provided");
             users().then((userCollection) => {
                 userCollection.findOne({ username: username }).then((user) => {
-                    console.log(password);
-                    console.log(user);
                     let res = bcrypt.compareSync(password, user.hashedPassword);
                     if (!res) Promise.reject("Invalid username or password!");
                     return resolve(user);
