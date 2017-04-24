@@ -92,13 +92,13 @@ let exportedMethods = {
     },
 
     getUserByUsernameAndPassword(username, password) {
-        return new Promise((resolve, recject) => {
-            if (username === undefined) return Promise.reject("No username provided");
-            if (password === undefined) return Promise.reject("No password provided");
+        return new Promise((resolve, reject) => {
+            if (username === undefined) return reject("No username provided");
+            if (password === undefined) return reject("No password provided");
             users().then((userCollection) => {
                 userCollection.findOne({ username: username }).then((user) => {
                     let res = bcrypt.compareSync(password, user.hashedPassword);
-                    if (!res) Promise.reject("Invalid username or password!");
+                    if (!res) return Promise.reject("Invalid username or password!");
                     return resolve(user);
                 });
             }).catch((Error) => {
