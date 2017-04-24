@@ -8,14 +8,16 @@ const path = require('path');
 
 
 router.post("/register", (req, res) => {
-    
-    Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(() => {
-      console.log("Goto login!");
-      res.render("layouts/login");
 
-    }, (reject) => {
-      res.render("layouts/register", { message: `${reject}` });
-    });
-  })
+  Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(() => {
+    console.log("Goto login!");
+    res.render("layouts/login");
+
+  }, (reject) => {
+    res.render("layouts/register", { message: `${reject}` });
+  }).catch((error) => {
+    res.render("layouts/register", { message: `${error}` });
+  });
+})
 
 module.exports = router;

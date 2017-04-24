@@ -29,9 +29,8 @@ let exportedMethods = {
 				//db operation, insert data to db
 				console.log("username and password valid!!");
 				users.getUserByUsernameForRegister(username).then(() => {
-					console.log("getUserByUsernameForRegister");
 					users.addNewUsers(username, password).then(() => {
-						console.log("addNewUsers successfully");
+						reject( "addNewUsers successfully");
 						return resolve(true);
 					})
 				}, (reject) => {

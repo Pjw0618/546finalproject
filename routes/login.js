@@ -15,6 +15,7 @@ passport.use(new LocalStrategy({
         User.getUserByUsernameAndPassword(username, password).then((user) => {
             return done(null, user);
         }, (reject) => {
+            console.log("wrong!");
             return done(null, false);
         });
     }
