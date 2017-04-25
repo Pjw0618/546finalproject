@@ -20,8 +20,12 @@ router.post("/feedback",(req,res)=>{
 
 	},(reject)=>{
 
-		res.render("layouts/feedback",{message: "try again!"});
+		res.render("layouts/feedback",{message: "system error, try again!"});
 	});
+	}else{
+
+
+		res.render("layouts/feedback",{message: "please input your name and your feedback"});
 	}
 
     
