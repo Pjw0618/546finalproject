@@ -12,6 +12,8 @@ router.post("/feedback",(req,res)=>{
 	let name = req.body.name;
 	let comment = req.body.comment;
 
+	if(name.length>0 && comment.length>0){
+
 	Feedback.createFeedback(name,comment).then(()=>{
 		
 		res.render('layouts/feedback',{message:"Thank you for your advice!"});
@@ -20,7 +22,8 @@ router.post("/feedback",(req,res)=>{
 
 		res.render("layouts/feedback",{message: "try again!"});
 	});
-	
+	}
+
     
 });
 
