@@ -137,3 +137,10 @@ a:focus {
     display: inline-block;
     margin: 20px 0;
 }
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 25px;
+}

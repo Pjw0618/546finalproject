@@ -12,9 +12,9 @@
     <link rel="icon" type="image/ico" href="../img/logo.ico" />
 
     <!-- Bootstrap Core CSS -->
-    <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../public/css/shop-homepage.css" rel="stylesheet">
+    <link href="../../public/css/search-result.css" rel="stylesheet">
 
 </head>
 
@@ -56,14 +56,7 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-taggle" data-toggle="dropdown" onmouseover="">Browsing History</a>
-                        <ul class="dropdown-menu">
-                            <li><a id="action-1" href="#">&nbsp;</a></li>
-                            <li><a href="#">&nbsp;</a></li>
-                            <li><a href="#">&nbsp;</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">&nbsp;</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">&nbsp;</a></li>
+                        <ul class="dropdown-menu" id="browsingHistory">
                         </ul>
                     </li>
 
@@ -93,7 +86,7 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" style="background: white;">
 
         <div class="row">
 
@@ -106,7 +99,7 @@
                     </div>
                     <div class="funkyradio-info">
                         <input type="radio" name="checkbox" id="aptRadio2" />
-                        <label for="aptRadio1">&nbsp;</label>
+                        <label for="aptRadio2">&nbsp;</label>
                     </div>
                     <div class="funkyradio-info">
                         <input type="radio" name="checkbox" id="aptRadio3" />
@@ -119,16 +112,16 @@
                         <input type="checkbox" name="checkbox" id="defineCheckbox1" />
                         <label for="defineCheckbox1">Get it by tommorow</label>
                     </div><br>
-                    
+
                     <p>Brand</p>
                     {{#each brand}}
-                        <div class="funkyradio-info">
+                    <div class="funkyradio-info">
                         <input type="checkbox" name="checkbox" id="{{brandID}}" />
                         <label for="{{brandID}}">&nbsp;{{brandName}}</label>
-                        </div>
-                    {{/each}}
-                    
-                    {{!--<div class="funkyradio-info">
+                    </div>
+                    {{/each}} {{!--
+
+                    <div class="funkyradio-info">
                         <input type="checkbox" name="checkbox" id="brandCheckbox1" />
                         <label for="brandCheckbox1">&nbsp;</label>
                     </div>
@@ -326,30 +319,17 @@
         </div>
 
     </div>
-    <!-- /.container -->
-
-    <div class="container">
-
-        <hr>
-
-        <!-- Footer -->
-        <footer class="container-fluid text-center">
-            <p>Copyright © 2017 Jiawen Peng. All rights reserved.</p>
-            <form class="form-inline">Get deals:
-                <input type="email" class="form-control" size="50" placeholder="Email Address">
-                <button type="button" class="btn btn-danger">Sign Up</button>
-            </form>
-        </footer>
-
-    </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="../public/js/jquery.js"></script>
+    <script src="../../public/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../public/js/bootstrap.min.js"></script>
-
+    <script src="../../public/js/bootstrap.min.js"></script>
+    <footer class="container-fluid text-center">
+        <p>Copyright © 2017 Jiawen Peng. All rights reserved.</p>
+        <form class="form-inline">Get deals:
+            <input type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Sign Up</button>
+        </form>
+    </footer>
 </body>
 
 </html>

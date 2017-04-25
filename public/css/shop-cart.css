@@ -179,19 +179,16 @@ navbar {
 /* Add a gray background color and some padding to the footer */
 
 footer {
-    position: relative;
+    position: absolute;
     bottom: 0px;
     width: 100%;
     background-color: #f2f2f2;
     padding: 25px;
 }
 
-
-/*
 body {
-    background: url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
-    padding: 50px;
-}*/
+    background: url('http://az616578.vo.msecnd.net/files/2017/01/28/6362116593780066211384157076_shopping-in-wexford-2048x1024.jpg');
+}
 
 #login-dp {
     min-width: 250px;
