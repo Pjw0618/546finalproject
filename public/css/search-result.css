@@ -6,6 +6,7 @@
 
 .paddingBody {
     padding-top: 70px;
+    background: url(http://www.rd.com/wp-content/uploads/sites/2/2016/08/09-skipped-clear-shopping-SamuelBrownNG.jpg);
     /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
@@ -254,6 +255,25 @@ body {
     }
 }
 
-.nav-a:hover {
-    text-decoration: underline;
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+#browsingHistory {
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 1000px;
+    height: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu #history1 {
+    position: relative;
+    float: left;
+    width: 20%;
 }
