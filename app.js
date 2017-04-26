@@ -64,6 +64,11 @@ app.get('/feedback',(req,res)=>{
      res.render("layouts/feedback");
  });
 
+app.get('/goods',(req,res)=>{
+ 
+     res.render("layouts/goods");
+ });
+
 configRoutes(app);
 
 
