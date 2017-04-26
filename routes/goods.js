@@ -27,4 +27,27 @@ router.post("/goods",(req,res)=>{
     
 });
 
+
+router.get("/goods",(req,res)=>{
+
+	
+	Goods.getAllGoods().then((goods)=>{
+
+		
+		res.render('layouts/goods',{goods:goods});
+
+	}).catch((Error)=>{
+
+		res.render('layouts/goods',{message:"no goods on the db"});
+
+
+	});
+	// ,(reject)=>{
+
+	// 	res.render('layouts/goods',{message:"no goods on the db"});
+
+	// });
+
+});
+
 module.exports = router;

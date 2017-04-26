@@ -21,7 +21,7 @@ let exportedMethods = {
 				price:price,
 				comments:[]
 			};
-			console.log(goodData);
+			
 			goodCollection.insertOne(goodData).then(() => {
                    
                      resolve(true);
@@ -39,7 +39,7 @@ let exportedMethods = {
 
 	getAllGoods(){
 	
-		Goods().then((goodsCollection)=>{
+		return Goods().then((goodsCollection)=>{
 			
 			return goodsCollection.find({}).toArray();
 		});
