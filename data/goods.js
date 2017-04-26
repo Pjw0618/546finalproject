@@ -1,25 +1,28 @@
 const mongoCollections = require("../config/mongoCollections");
-const Feedback = mongoCollections.Feedback;
+const Goods = mongoCollections.Goods;
 const uuid = require('node-uuid');
 
 let exportedMethods = {
 
-	createFeedback(name,comment){
+	createGoods(goods,description,price){
 
 		return new Promise((resolve,reject)=>{
 
 			let ID = uuid.v4();
 
-		Feedback().then((feedbackCollection)=>{
+		Goods().then((goodCollection)=>{
 
-			let feedbackData = {
+			let goodData = {
 				
 				_id: ID,
-				name: name,
-				comment:comment
-
+				goods: goods,
+				description:description,
+				score:[],
+				price:price,
+				comments:[]
 			};
-			feedbackCollection.insertOne(feedbackData).then(() => {
+			console.log(goodData);
+			goodCollection.insertOne(goodData).then(() => {
                    
                      resolve(true);
 
@@ -32,8 +35,16 @@ let exportedMethods = {
 
 		});
 
-	}
+	},
 
+	getAllGoods(){
+	
+		Goods().then((goodsCollection)=>{
+			
+			return goodsCollection.find({}).toArray();
+		});
+
+	}
 
 }
 
