@@ -63,6 +63,7 @@ app.get('/profile', (req, res) => {
 
 app.get('/feedback', (req, res) => {
 
+<<<<<<< HEAD
     res.render("layouts/feedback");
 });
 
@@ -70,6 +71,12 @@ app.get('/goods', (req, res) => {
 
     res.render("layouts/goods");
 });
+=======
+// app.get('/goods',(req,res)=>{
+ 
+//      res.render("layouts/goods");
+//  });
+>>>>>>> 4a319df7f6a76d2ff8eff8ed5a7dc3b0d5dcc88d
 
 configRoutes(app);
 

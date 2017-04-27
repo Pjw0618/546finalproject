@@ -14,9 +14,21 @@ router.post("/goods",(req,res)=>{
 	let price = req.body.price;
 
 	
-	Goods.createGoods(goods,description,price).then(()=>{
+	Goods.createGoods(goods,description,price).then((success)=>{
+
+		Goods.getAllGoods().then((goodsCollection)=>{
+
 		
-		res.render('layouts/goods',{message:"new goods!"});
+		res.render('layouts/goods',{goods:goodsCollection});
+
+	}).catch((Error)=>{
+
+		res.render('layouts/goods',{message:"no goods on the db"});
+
+
+	});
+		
+		
 
 	},(reject)=>{
 
@@ -25,6 +37,24 @@ router.post("/goods",(req,res)=>{
 	
 
     
+});
+
+
+router.get("/goods",(req,res)=>{
+
+	Goods.getAllGoods().then((goodsCollection)=>{
+
+		
+		res.render('layouts/goods',{goods:goodsCollection});
+
+	}).catch((Error)=>{
+
+		res.render('layouts/goods',{message:"no goods on the db"});
+
+
+	});
+		
+
 });
 
 module.exports = router;

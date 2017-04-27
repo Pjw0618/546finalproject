@@ -34,7 +34,7 @@ router.get("/", (req, res) => {
     
     if (req.user) {
 
-        res.redirect("shopping");
+        res.redirect("goods");
     }
     else {
         res.render("layouts/login",{ message: "Please input your username and password!"});
@@ -47,15 +47,15 @@ router.get("/", (req, res) => {
 
 // });
 
-router.get("/private", (req, res, next) => {
-    if (!req.user) {
-        res.render("layouts/login", { message: "Please Login Firstly" });
-    }
-    else {
-        console.log(req.user);
-        res.render("layouts/private", req.user);
-    }
-});
+// router.get("/private", (req, res, next) => {
+//     if (!req.user) {
+//         res.render("layouts/login", { message: "Please Login Firstly" });
+//     }
+//     else {
+//         console.log(req.user);
+//         res.render("layouts/private", req.user);
+//     }
+// });
 
 
 router.get('/logout', function(req, res){
@@ -68,7 +68,7 @@ router.get('/logout', function(req, res){
 
 router.post('/login',
     passport.authenticate('local',{
-        successRedirect: '/private',
+        successRedirect: '/goods',
         successFlash: 'Welcome!',
         failureRedirect: '/',
         failureFlash: 'Invalid username or password.',
