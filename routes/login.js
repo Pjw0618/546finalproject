@@ -68,7 +68,7 @@ router.get('/logout', function(req, res){
 
 router.post('/login',
     passport.authenticate('local',{
-        successRedirect: '/private',
+        successRedirect: '/goods',
         successFlash: 'Welcome!',
         failureRedirect: '/',
         failureFlash: 'Invalid username or password.',
