@@ -10,7 +10,7 @@ let exportedMethods = {
 
 			let ID = uuid.v4();
 
-		Goods().then((goodCollection)=>{
+		return Goods().then((goodCollection)=>{
 
 			let goodData = {
 				
