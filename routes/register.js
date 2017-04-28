@@ -14,6 +14,6 @@ router.post("/register", (req, res) => {
         // var error = document.getElementById("").value;
         res.render("layouts/login", { message: `${error}` });
     });
-})
 
+})
 module.exports = router;
