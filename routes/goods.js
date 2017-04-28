@@ -18,7 +18,7 @@ router.post("/goods",(req,res)=>{
 		res.render('layouts/goods',{goods:goodsCollection});
 
 	}).catch((Error)=>{
-		//heheh
+		
 		res.render('layouts/goods',{message:"no goods on the db"});
 
 
@@ -46,6 +46,19 @@ router.get("/goods",(req,res)=>{
 
 		res.render('layouts/goods',{message:"no goods on the db"});
 
+
+	});
+		
+
+});
+
+
+
+router.get("/goods/:id",(req,res)=>{
+
+	Goods.getGoodsById(req.params.id).then((good)=>{
+
+		res.render('layouts/goodsDetail',{goods:good});
 
 	});
 		
