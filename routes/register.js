@@ -9,17 +9,13 @@ const path = require('path');
 router.post("/register", (req, res) => {
     console.log("in");
     Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(resolve => {
+        console.log(resolve);
+        res.render("layouts/login");
 
-
-            console.log(resolve);
-            res.render("layouts/login");
-
-        }
-        // , (reject) => {
-        // 	console.log(1);
-        //   res.render("layouts/login", { message: `${reject}` });
-        // })
-    ).catch((error) => {
+    }, (reject) => {
+        console.log(1);
+        res.render("layouts/login", { message: `${reject}` });
+    }).catch((error) => {
         console.log(2);
         res.render("layouts/register", { message: `${error}` });
     });

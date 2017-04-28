@@ -15,14 +15,9 @@
 
 <body>
 <link href="http://localhost:3000/css/shop-homepage.css" rel="stylesheet">
-    <div class="jumbotron">
-        <div class="container text-center">
-            <h1>Online Store</h1>
-            <p>Mission, Vission & Values</p>
-        </div>
-    </div>
+<script src="http://localhost:3000/js/home.js"></script>
 
-    <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -39,7 +34,7 @@
                         <a href="#" class="dropdown-taggle" data-toggle="dropdown" onmouseover="">Departments</a>
                         <ul class="dropdown-menu">
                             {{#each Department}}
-                                <li><a id="{{departmentID}}" href="{{departmentLink}}">{{departmentName}}</a></li>
+                                <li><a id="{{departmentID}}" href="{{goods}}">{{departmentName}}</a></li>
                             {{/each}}
                             {{!--<li><a id="action-1" href="#">&nbsp;</a></li>
                             <li><a href="#">&nbsp;</a></li>
@@ -52,7 +47,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="nav-a dropdown-taggle" data-toggle="dropdown" onmouseover="">Browsing History</a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" id="browsingHistory">
                             <li><a id="action-1" href="#">&nbsp;</a></li>
                             <li><a href="#">&nbsp;</a></li>
                             <li><a href="#">&nbsp;</a></li>
@@ -69,11 +64,11 @@
                     <li><a href="http://localhost:3000/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                 </ul>
 
-                <form class="navbar-form" role="search">
+                <form class="navbar-form" role="search" action="/searchResults" method="post">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search">
                         <span class="input-group-btn">
-                <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                         </span>
                     </div>
                 </form>
@@ -81,6 +76,74 @@
 
         </div>
     </nav>
+
+    <section class="slide-wrapper">
+        <div class="container">
+            <div id="myCarousel" class="carousel slide">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                 </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item item1 active">
+                        <div class="fill" style=" background-color:#48c3af;">
+                            <div class="inner-content">
+                                <div class="carousel-img">
+                                    <img src="http://vocefalandoingles.com/wp-content/uploads/2016/09/sofa.png" alt="sofa" class="img img-responsive" />
+                                </div>
+                                <div class="carousel-desc">
+                                    <h2>Perfect Gifts Every Time</h2>
+                                    <p>Browse our gift collections by occasion, price, or personality to make your online gifts shopping experience more streamlined than ever before. Take the stress and frustration out of shopping for any upcoming holiday without battling the crowds, and find gifts your loved ones will treasure for years to come on Gifts.com.</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item2">
+                        <div class="fill" style="background-color:#b33f4a;">
+                            <div class="inner-content">
+                                <div class="carousel-img">
+                                    <img src="http://cdn.homedit.com/wp-content/uploads/2011/08/137CLUB2ST.png" alt="white-sofa" class="img img-responsive" />
+                                </div>
+                                <div class="carousel-desc">
+                                    <h2>Modern Designed Furniture</h2>
+                                    <p>Your home is more than a house, it’s the daily moments and experiences you share that make it uniquely you. At Ashley HomeStore, we celebrate being home with you. Our locally owned and operated stores are passionate about being the best and most affordable furniture store 
+for your home.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item item3">
+                        <div class="fill" style="background-color:#7fc2f4;">
+                            <div class="inner-content">
+                                <div class="col-md-6">
+
+                                    <div class="carousel-img">
+                                        <img src="http://vocefalandoingles.com/wp-content/uploads/2016/09/sofa.png" alt="sofa" class="img img-responsive" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 text-left">
+                                    <div class="carousel-desc">
+
+                                        <h2>Books</h2>
+                                        <p>“Do not read, as children do, to amuse yourself, or like the ambitious, for the purpose of instruction. No, read in order to live.” </p>
+                                        <p style="text-align: right;">― Gustave Flaubert</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
 
     <div class="container">
         <div class="row">
