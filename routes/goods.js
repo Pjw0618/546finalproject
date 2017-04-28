@@ -4,16 +4,12 @@ const data = require("../data");
 const Goods = data.goods;
 const path = require('path');
 
-
-
 router.post("/goods",(req,res)=>{
-
 	
 	let goods = req.body.goods;
 	let description = req.body.description;
 	let price = req.body.price;
 
-	
 	Goods.createGoods(goods,description,price).then((success)=>{
 
 		Goods.getAllGoods().then((goodsCollection)=>{
@@ -22,13 +18,12 @@ router.post("/goods",(req,res)=>{
 		res.render('layouts/goods',{goods:goodsCollection});
 
 	}).catch((Error)=>{
-
+		
 		res.render('layouts/goods',{message:"no goods on the db"});
 
 
 	});
-		
-		
+				
 
 	},(reject)=>{
 
@@ -51,6 +46,19 @@ router.get("/goods",(req,res)=>{
 
 		res.render('layouts/goods',{message:"no goods on the db"});
 
+
+	});
+		
+
+});
+
+
+
+router.get("/goods/:id",(req,res)=>{
+
+	Goods.getGoodsById(req.params.id).then((good)=>{
+
+		res.render('layouts/goodsDetail',{goods:good});
 
 	});
 		

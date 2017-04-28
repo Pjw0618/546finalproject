@@ -44,7 +44,32 @@ let exportedMethods = {
 			return goodsCollection.find({}).toArray();
 		});
 
-	}
+	},
+
+	getGoodsById(id) {
+        return Goods().then((goodsCollection) => {
+
+            return goodsCollection.findOne({ _id: id }).then((good) => {
+                // if (!good) throw "User not found";
+                return good;
+            });
+        });
+    },
+
+	 createCommentForGoods(id, poster, comment) {
+        return this.getGoodsById(id).then((currentGood) => {
+
+            let commentData = {
+
+                poster: poster,
+                comment: comment
+            };
+
+            return userCollection.updateOne({ _id: id }, commentData).then(() => {
+                return this.getGoodsById(id);
+            });
+        });
+    }
 
 }
 

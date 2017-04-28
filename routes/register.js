@@ -7,18 +7,13 @@ const path = require('path');
 
 
 router.post("/register", (req, res) => {
-    // console.log("in");
-    // Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(resolve => {
-    //     console.log(resolve);
-    //     res.render("layouts/login");
+    Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(resolve => {
+        console.log(resolve);
+        res.render("layouts/login");
+    }).catch((error) => {
+        // var error = document.getElementById("").value;
+        res.render("layouts/login", { message: `${error}` });
+    });
 
-    // }, (reject) => {
-    //     console.log(1);
-    //     res.render("layouts/login", { message: `${reject}` });
-    // }).catch((error) => {
-    //     console.log(2);
-    //     res.render("layouts/register", { message: `${error}` });
-    //});
 })
-
 module.exports = router;
