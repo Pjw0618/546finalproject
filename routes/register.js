@@ -12,8 +12,9 @@ router.post("/register", (req, res) => {
         res.render("layouts/login");
     }).catch((error) => {
         // var error = document.getElementById("").value;
-        res.render("layouts/login", { message: `${error}` });
+        //res.render("layouts/login", { message: `${error}` });
+        res.send({ message: `${error}` });
     });
-})
 
+})
 module.exports = router;

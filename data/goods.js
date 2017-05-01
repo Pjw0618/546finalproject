@@ -83,7 +83,14 @@ let exportedMethods = {
         });
     },
 
-  
+    //firstly, get id by user id, and then check that user whether he or she have ordered that item, if not,
+    //he or she can't comment that good
+    //return: that user, this function would be used in users.js/data
+    getGoodsInUser(goodsId,userId){
+
+
+    }
+
 }
 
 module.exports = exportedMethods;

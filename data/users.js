@@ -99,8 +99,10 @@ let exportedMethods = {
 
     getUserByUsernameAndPassword(username, password) {
 
+
         if (username === undefined) throw "Invalid username or password!";
         if (password === undefined) throw "Invalid username or password!";
+
 
         return users().then((userCollection) => {
 
