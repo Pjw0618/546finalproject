@@ -10,14 +10,17 @@ passport.use(new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password'
     },
+
     function(username, password, done) {
 
         User.getUserByUsernameAndPassword(username, password).then((user) => {
+
+
             return done(null, user);
         }, (reject) => {
             console.log("wrong!");
 
-            return done(null, false);
+            // return done(null, false);
         });
     }
 ));
@@ -75,7 +78,7 @@ router.post('/login',
     passport.authenticate('local', {
         successRedirect: '/home',
         successFlash: 'Welcome!',
-        failureRedirect: '/',
+        failureRedirect: '/login',
         failureFlash: 'Invalid username or password.',
         failureFlash: true
     }));

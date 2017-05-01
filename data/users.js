@@ -98,6 +98,7 @@ let exportedMethods = {
     },
 
     getUserByUsernameAndPassword(username, password) {
+        console.log("heheheehhe");
         if (username === undefined) return Promise.reject("No username provided");
         if (password === undefined) return Promise.reject("No password provided");
         return users().then((userCollection) => {
