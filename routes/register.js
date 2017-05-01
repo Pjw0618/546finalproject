@@ -8,7 +8,7 @@ const path = require('path');
 
 router.post("/register", (req, res) => {
     Register.registerUser(req.body.username, req.body.password, req.body.reenterpassword).then(resolve => {
-        console.log(resolve);
+        console.log("resolve");
         res.render("layouts/login");
     }).catch((error) => {
         // var error = document.getElementById("").value;

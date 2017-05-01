@@ -41,23 +41,6 @@ router.get("/", (req, res) => {
     }
 });
 
-// router.post("/register",(req,res)=>{
-//     console.log("redir");
-//     res.render("layouts/register",{message:"dd"});
-
-// });
-
-// router.get("/private", (req, res, next) => {
-//     if (!req.user) {
-//         res.render("layouts/login", { message: "Please Login Firstly" });
-//     }
-//     else {
-//         console.log(req.user);
-//         res.render("layouts/private", req.user);
-//     }
-// });
-
-
 router.get('/logout', function(req, res){
     
   req.logout();
