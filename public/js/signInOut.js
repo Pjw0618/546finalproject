@@ -28,3 +28,8 @@ function toRegister() {
 
     });
 };
+
+// function checkPassword() {
+//     var password = document.getElementById("");
+
+// }

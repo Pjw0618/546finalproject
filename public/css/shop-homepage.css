@@ -545,3 +545,11 @@ item3.active p {
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}

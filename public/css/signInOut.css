@@ -56,8 +56,8 @@ a:focus {
 }
 
 .login-screen {
-    background-image: url(https://www.squiz.net/__public/Systems/Perspective/FileCache/1-32000/465/prop/header-bg-image.jpg?t=1472431690);
-    /*background-image: url(https://image.freepik.com/free-photo/shopping-mall-background-with-bokeh-effect_1203-1547.jpg);*/
+    /*background-image: url(https://www.squiz.net/__public/Systems/Perspective/FileCache/1-32000/465/prop/header-bg-image.jpg?t=1472431690);*/
+    background-image: url(https://rochesteroptical.com/wp-content/uploads/2015/12/AF-Client-Login-background-940x475.png);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -82,7 +82,8 @@ a:focus {
 }
 
 .login-center {
-    text-align: left;
+    font-size: 20px;
+    text-align: center;
 }
 
 .login {
@@ -91,7 +92,7 @@ a:focus {
 }
 
 .login .login-form {
-    text-align: left;
+    text-align: center;
 }
 
 .login label {
@@ -100,7 +101,7 @@ a:focus {
 
 .login-form .input-group .form-control {
     background: none;
-    height: 44px;
+    height: 50px;
     color: #ddd;
 }
 
@@ -143,4 +144,5 @@ footer {
     bottom: 0px;
     width: 100%;
     padding: 25px;
+    color: black;
 }

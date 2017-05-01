@@ -1,4 +1,14 @@
 $(document).ready(function() {
+    // scroll body to 0px on click
+    $('#back-to-top').click(function() {
+        $('#back-to-top').tooltip('hide');
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
+
+    $('#back-to-top').tooltip('show');
     // invoke the carousel
     $('#myCarousel').carousel({
         interval: 6000
