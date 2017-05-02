@@ -49,22 +49,22 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
 
-app.get('/register', (req, res) => {
+// app.get('/register', (req, res) => {
 
-    res.render("layouts/register");
+//     res.render("layouts/register");
 
-});
+// });
 
-app.get('/profile', (req, res) => {
+// app.get('/profile', (req, res) => {
 
-    res.render("layouts/profile");
-});
+//     res.render("layouts/profile");
+// });
 
 
-app.get('/feedback', (req, res) => {
+// app.get('/feedback', (req, res) => {
 
-    res.render("layouts/feedback");
-});
+//     res.render("layouts/feedback");
+// });
 
 configRoutes(app);
 

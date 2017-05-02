@@ -1,63 +1,3 @@
-{{!--{{#if goods}}
-        <ul>
-        <li>{{goods.description}}</li>
-        </ul>
-
-
- <form action="/buy" method="post">
-
-<input type="text" name="buygoodsid" value="{{goods._id}}" hidden/>
-<input type="text" name="buygoodsname" value="{{goods.goods}}" hidden/>
- <input type="submit" value="buy it now" />
-
- </form>
-
-
- <form action="/addshoppingcart" method="post">
-
-<input type="text" name="cartgoodsid" value="{{goods._id}}" hidden/>
-<input type="text" name="cartgoodsname" value="{{goods.goods}}" hidden/>
-<input type="text" name="cartgoodsprice" value="{{goods.price}}" hidden/>
-<input type="submit" value="add to cart" />
-
- </form>
-
- <form action="/goodscomment" method="post">
-
-    <div>
-        <label>comment:</label>
-        <input type="text"  name="comment"/>
-    </div>
-
-   <div>
-
-   <!--  {{#if goods}}
-       <label id="id">{{goods._id}}</label>
-    {{/if}} -->
-   	 
-   </div>
-
-    <div>
-        <input type="submit" value="submit"/>
-    </div>
-
-</form>
-
-<!-- rate this good -->
-<form action="/goodsrate" method="post">
-	
-
-
-
-</form>
-
- {{/if}}
-{{message}}--}}
-
-
-
-
-
 {{!--<!DOCTYPE html>
 <html lang="en">
 
@@ -165,7 +105,7 @@
 
                     </div>
                     <div class="details col-md-6">
-                        <h3 class="product-title">{{goods.goods}}</h3>
+                        <h3 class="product-title">men's shoes fashion</h3>
                         <div class="rating">
                             <div class="stars">
                                 <span class="fa fa-star checked"></span>
@@ -177,7 +117,7 @@
                             <span class="review-no">41 reviews</span>
                         </div>
                         <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
-                        <h4 class="price">current price: <span>$ {{goods.price}}</span></h4>
+                        <h4 class="price">current price: <span>$180</span></h4>
                         <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
                         <h5 class="sizes">sizes:
                             <span class="size" data-toggle="tooltip" title="small">s</span>
@@ -192,17 +132,8 @@
                             <span class="color blue"></span>
                         </h5>
                         <div class="action">
-                            <form action="/buy" method="post" style="display: inline-block;">
-                                <input type="text" name="buygoodsid" value="{{goods._id}}" hidden/>
-                                <input type="text" name="buygoodsname" value="{{goods.goods}}" hidden/>
-                                <button class="add-to-cart btn btn-default" type="submit">buy with 1-click</button>
-                            </form>
-                            <form action="/addshoppingcart" method="post" style="display: inline-block;">
-                                <input type="text" name="cartgoodsid" value="{{goods._id}}" hidden/>
-                                <input type="text" name="cartgoodsname" value="{{goods.goods}}" hidden/>
-                                <input type="text" name="cartgoodsprice" value="{{goods.price}}" hidden/>
-                                <button class="add-to-cart btn btn-default" type="submit">add to cart</button>
-                            </form>
+                            <button class="add-to-cart btn btn-default" type="button">buy with 1-click</button>
+                            <button class="add-to-cart btn btn-default" type="button">add to cart</button>
                             <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                         </div>
                     </div>
@@ -222,12 +153,12 @@
                         <div class="tab-pane fade in active" id="service-one">
                             <section class="container product-info">
                                 </br>
-                                {{goods.description}}
-                                {{!--The Corsair Gaming Series GS600 power supply is the ideal price-performance solution for building or upgrading a Gaming PC. A single +12V rail provides up to 48A of reliable, continuous power for multi-core gaming PCs with multiple graphics cards. The
+                                {{description}}
+                                The Corsair Gaming Series GS600 power supply is the ideal price-performance solution for building or upgrading a Gaming PC. A single +12V rail provides up to 48A of reliable, continuous power for multi-core gaming PCs with multiple graphics cards. The
                                 ultra-quiet, dual ball-bearing fan automatically adjusts its speed according to temperature, so it will never intrude on your music and games. Blue LEDs bathe the transparent fan blades in a cool glow. Not feeling blue?
-                                You can turn off the lighting with the press of a button.--}}
+                                You can turn off the lighting with the press of a button.
 
-                                <h3>{{goods.goods}} Features:</h3>
+                                <h3>{{prodName}} Features:</h3>
                                 <li>It supports the latest ATX12V v2.3 standard and is backward compatible with ATX12V 2.2 and ATX12V 2.01 systems</li>
                                 <li>An ultra-quiet 140mm double ball-bearing fan delivers great airflow at an very low noise level by varying fan speed in response to temperature</li>
                                 <li>80Plus certified to deliver 80% efficiency or higher at normal load conditions (20% to 100% load)</li>
@@ -337,7 +268,7 @@
                                     </div>
                                 </div>
 
-                                {{!--{{#each comment}}
+                                {{#each comment}}
 
                                 <div class="row">
                                     <div class="col-sm-7">
@@ -372,7 +303,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{/each}}--}}
+                                {{/each}}
                         </div>
                         </section>
 

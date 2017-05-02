@@ -537,6 +537,7 @@ item3.active p {
 
 #browsingHistory {
     width: 100vw;
+    height: 200px;
     position: absolute;
     left: 0;
     right: 0;
