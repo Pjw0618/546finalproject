@@ -43,6 +43,7 @@ router.get("/", (req, res) => {
     }
 });
 
+
 // router.post("/register",(req,res)=>{
 //     console.log("redir");
 //     res.render("layouts/register",{message:"dd"});

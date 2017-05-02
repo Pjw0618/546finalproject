@@ -98,18 +98,41 @@ let exportedMethods = {
     },
 
     getUserByUsernameAndPassword(username, password) {
-        console.log("heheheehhe");
-        if (username === undefined) return Promise.reject("No username provided");
-        if (password === undefined) return Promise.reject("No password provided");
+
+
+        if (username === undefined) throw "Invalid username or password!";
+        if (password === undefined) throw "Invalid username or password!";
+
+
         return users().then((userCollection) => {
+
             return userCollection.findOne({ username: username }).then((user) => {
+
+                console.log(user);
                 let res = bcrypt.compareSync(password, user.hashedPassword);
+
                 if (!res) throw "Invalid username or password!";
-                return resolve(user);
+
             });
+
         }).catch((Error) => {
-            return Promise.reject(Error);
+
+            throw "system error";
+
         });
+    },
+
+    //firstly, get user by user id and then insert order{orderid,name,time} to user collection for order history
+    updateOrder(userid,id,name){
+
+
+    },
+
+    //firstly, get user by user id and then insert order{orderid,name,time} to user collection for shopping cart
+    addToShoppingCart(userid,id,name,price){
+
+
+
     }
 }
 

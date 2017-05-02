@@ -4,7 +4,7 @@ const uuid = require('node-uuid');
 
 let exportedMethods = {
 
-	createGoods(goods,description,price){
+	createGoods(goods,description,price,department){
 
 		return new Promise((resolve,reject)=>{
 
@@ -19,7 +19,8 @@ let exportedMethods = {
 				description:description,
 				score:[],
 				price:price,
-				comments:[]
+				comments:[],
+				department:department
 			};
 			
 			goodCollection.insertOne(goodData).then(() => {
@@ -42,6 +43,17 @@ let exportedMethods = {
 		return Goods().then((goodsCollection)=>{
 			
 			return goodsCollection.find({}).toArray();
+		});
+
+	},
+
+	getGoodsByDepartment(department){
+
+		return Goods().then((goodsCollection)=>{
+
+			//Get goods by department, below is a example, I don't know if it is a right way.
+			//return goodsCollection.find({department:department}).toArray();
+
 		});
 
 	},
@@ -69,6 +81,14 @@ let exportedMethods = {
                 return this.getGoodsById(id);
             });
         });
+    },
+
+    //firstly, get id by user id, and then check that user whether he or she have ordered that item, if not,
+    //he or she can't comment that good
+    //return: that user, this function would be used in users.js/data
+    getGoodsInUser(goodsId,userId){
+
+
     }
 
 }
