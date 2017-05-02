@@ -49,24 +49,58 @@
                     <li class="dropdown">
                         <a href="#" class="nav-a dropdown-taggle" data-toggle="dropdown" onmouseover="">Browsing History</a>
                         <ul class="dropdown-menu" id="browsingHistory">
-                            <li><a id="action-1" href="#">&nbsp;</a></li>
-                            <li><a href="#">&nbsp;</a></li>
-                            <li><a href="#">&nbsp;</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">&nbsp;</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">&nbsp;</a></li>
+                            <li>
+                                &nbsp;
+                                </li>
                         </ul>
                     </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    {{#if loggedin}}
                     <li><a href="http://localhost:3000/login"><span class="glyphicon glyphicon-user"></span> Sign In / Up</a></li>
+                    {{else}}
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <strong>Salman</strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>{{username}}</strong></p>
+                                        <p class="text-left small">{{email}}</p>
+                                        <p class="text-left">
+                                            <a href="http://localhost:3000/userSettings" class="btn btn-primary btn-block btn-sm">Profile</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider navbar-login-session-bg"></li>
+                         <li><a href="http://localhost:3000/userSettings">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:3000/favorites">Favourites <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+                    {{/if}}
                     <li><a href="http://localhost:3000/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                 </ul>
 
                 <form class="navbar-form" role="search" action="/searchResults" method="post">
-                    <div class="input-group">
+                    <div class="input-group col-xs-5">
                         <input type="text" class="form-control" placeholder="Search">
                         <span class="input-group-btn">
                 <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
