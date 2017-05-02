@@ -133,7 +133,7 @@ let name = req.body.buygoodsname;
 
 });
 
-router("/addshoppingcart",(req,res)=>{
+router.post("/addshoppingcart",(req,res)=>{
 
 	let id = req.body.cartgoodsid;
 	let name = req.body.cartgoodsname;
@@ -156,6 +156,13 @@ router("/addshoppingcart",(req,res)=>{
 	});
 
 	}
+
+});
+
+
+router.post("/goodsrate",(req,res)=>{
+
+
 
 });
 
