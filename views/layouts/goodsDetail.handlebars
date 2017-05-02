@@ -1,7 +1,4 @@
-
-
-
-{{#if goods}}
+{{!--{{#if goods}}
         <ul>
         <li>{{goods.description}}</li>
         </ul>
@@ -9,8 +6,8 @@
 
  <form action="/buy" method="post">
 
-<input type="text" name="buygoodsid" value="{{goods._id}}" />
-<input type="text" name="buygoodsname" value="{{goods.goods}}" />
+<input type="text" name="buygoodsid" value="{{goods._id}}" hidden/>
+<input type="text" name="buygoodsname" value="{{goods.goods}}" hidden/>
  <input type="submit" value="buy it now" />
 
  </form>
@@ -18,13 +15,12 @@
 
  <form action="/addshoppingcart" method="post">
 
-<input type="text" name="cartgoodsid" value="{{goods._id}}" />
-<input type="text" name="cartgoodsname" value="{{goods.goods}}" />
-<input type="text" name="cartgoodsprice" value="{{goods.goods}}" />
- <input type="submit" value="add to cart" />
+<input type="text" name="cartgoodsid" value="{{goods._id}}" hidden/>
+<input type="text" name="cartgoodsname" value="{{goods.goods}}" hidden/>
+<input type="text" name="cartgoodsprice" value="{{goods.price}}" hidden/>
+<input type="submit" value="add to cart" />
 
  </form>
-
 
  <form action="/goodscomment" method="post">
 
@@ -47,4 +43,353 @@
 
 </form>
  {{/if}}
-{{message}}
+{{message}}--}}
+
+
+
+
+
+{{!--<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>--}}
+
+<body>
+    <link href="http://localhost:3000/css/prod-detail.css" rel="stylesheet">
+    <link href="http://localhost:3000/css/shop-homepage.css" rel="stylesheet">
+    <script src="http://localhost:3000/js/backToTop.js"></script>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+                <a class="navbar-brand" href="http://localhost:3000">Shopping.com</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="http://localhost:3000">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-taggle" data-toggle="dropdown" onmouseover="">Departments</a>
+                        <ul class="dropdown-menu">
+                            <li><a id="department" href="">&nbsp;</a></li>
+                            <li><a id="action-1" href="#">&nbsp;</a></li>
+                            <li><a href="#">&nbsp;</a></li>
+                            <li><a href="#">&nbsp;</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">&nbsp;</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">&nbsp;</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-a dropdown-taggle" data-toggle="dropdown">Browsing History</a>
+                        <ul class="dropdown-menu" id="browsingHistory">
+                            <li>
+                                &nbsp;
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://localhost:3000/login"><span class="glyphicon glyphicon-user"></span> Sign In / Up</a></li>
+                    <li><a href="http://localhost:3000/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                </ul>
+
+                <form class="navbar-form" role="search" action="/searchResults" method="post">
+                    <div class="input-group col-xs-5">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card" style="margin-top: 5px;">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs">
+                            <li class="active">
+                                <a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
+                            </li>
+                            <li>
+                                <a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
+                            </li>
+                            <li>
+                                <a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
+                            </li>
+                            <li>
+                                <a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
+                            </li>
+                            <li>
+                                <a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">{{goods.goods}}</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <span class="review-no">41 reviews</span>
+                        </div>
+                        <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+                        <h4 class="price">current price: <span>$ {{goods.price}}</span></h4>
+                        <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                        <h5 class="sizes">sizes:
+                            <span class="size" data-toggle="tooltip" title="small">s</span>
+                            <span class="size" data-toggle="tooltip" title="medium">m</span>
+                            <span class="size" data-toggle="tooltip" title="large">l</span>
+                            <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+                        </h5>
+                        <h5 class="colors">colors:
+                            <span class="color orange not-avail、
+                            able" data-toggle="tooltip" title="Not In store"></span>
+                            <span class="color green"></span>
+                            <span class="color blue"></span>
+                        </h5>
+                        <div class="action">
+                            <form action="/buy" method="post" style="display: inline-block;">
+                                <input type="text" name="buygoodsid" value="{{goods._id}}" hidden/>
+                                <input type="text" name="buygoodsname" value="{{goods.goods}}" hidden/>
+                                <button class="add-to-cart btn btn-default" type="submit">buy with 1-click</button>
+                            </form>
+                            <form action="/addshoppingcart" method="post" style="display: inline-block;">
+                                <input type="text" name="cartgoodsid" value="{{goods._id}}" hidden/>
+                                <input type="text" name="cartgoodsname" value="{{goods.goods}}" hidden/>
+                                <input type="text" name="cartgoodsprice" value="{{goods.price}}" hidden/>
+                                <button class="add-to-cart btn btn-default" type="submit">add to cart</button>
+                            </form>
+                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container-fluid">
+                <div class="col-md-12 product-info">
+                    <ul id="myTab" class="nav nav-tabs nav_tabs">
+
+                        <li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
+                        <li><a href="#service-two" data-toggle="tab">CUSTOMER REVIEWS</a></li>
+                        <li><a href="#service-three" data-toggle="tab">PRODUCTS RELATED</a></li>
+
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="service-one">
+                            <section class="container product-info">
+                                </br>
+                                {{goods.description}}
+                                {{!--The Corsair Gaming Series GS600 power supply is the ideal price-performance solution for building or upgrading a Gaming PC. A single +12V rail provides up to 48A of reliable, continuous power for multi-core gaming PCs with multiple graphics cards. The
+                                ultra-quiet, dual ball-bearing fan automatically adjusts its speed according to temperature, so it will never intrude on your music and games. Blue LEDs bathe the transparent fan blades in a cool glow. Not feeling blue?
+                                You can turn off the lighting with the press of a button.--}}
+
+                                <h3>{{goods.goods}} Features:</h3>
+                                <li>It supports the latest ATX12V v2.3 standard and is backward compatible with ATX12V 2.2 and ATX12V 2.01 systems</li>
+                                <li>An ultra-quiet 140mm double ball-bearing fan delivers great airflow at an very low noise level by varying fan speed in response to temperature</li>
+                                <li>80Plus certified to deliver 80% efficiency or higher at normal load conditions (20% to 100% load)</li>
+                                <li>0.99 Active Power Factor Correction provides clean and reliable power</li>
+                                <li>Universal AC input from 90~264V — no more hassle of flipping that tiny red switch to select the voltage input!</li>
+                                <li>Extra long fully-sleeved cables support full tower chassis</li>
+                                <li>A three year warranty and lifetime access to Corsair’s legendary technical support and customer service</li>
+                                <li>Over Current/Voltage/Power Protection, Under Voltage Protection and Short Circuit Protection provide complete component safety</li>
+                                <li>Dimensions: 150mm(W) x 86mm(H) x 160mm(L)</li>
+                                <li>MTBF: 100,000 hours</li>
+                                <li>Safety Approvals: UL, CUL, CE, CB, FCC Class B, TÜV, CCC, C-tick</li>
+                            </section>
+                        </div>
+
+                        <div class="tab-pane fade" id="service-two">
+                            <section class="container">
+                                </br>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="rating-block">
+                                            <h4>Average user rating</h4>
+                                            <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
+                                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+                                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+                                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+                                            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+                                            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h4>Rating breakdown</h4>
+                                        <div class="pull-left">
+                                            <div class="pull-left" style="width:35px; line-height:1;">
+                                                <div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
+                                            </div>
+                                            <div class="pull-left" style="width:180px;">
+                                                <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+                                                        <span class="sr-only">80% Complete (danger)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right" style="margin-left:10px;">1</div>
+                                        </div>
+                                        <div class="pull-left">
+                                            <div class="pull-left" style="width:35px; line-height:1;">
+                                                <div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
+                                            </div>
+                                            <div class="pull-left" style="width:180px;">
+                                                <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+                                                        <span class="sr-only">80% Complete (danger)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right" style="margin-left:10px;">1</div>
+                                        </div>
+                                        <div class="pull-left">
+                                            <div class="pull-left" style="width:35px; line-height:1;">
+                                                <div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
+                                            </div>
+                                            <div class="pull-left" style="width:180px;">
+                                                <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+                                                        <span class="sr-only">80% Complete (danger)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right" style="margin-left:10px;">0</div>
+                                        </div>
+                                        <div class="pull-left">
+                                            <div class="pull-left" style="width:35px; line-height:1;">
+                                                <div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
+                                            </div>
+                                            <div class="pull-left" style="width:180px;">
+                                                <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+                                                        <span class="sr-only">80% Complete (danger)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right" style="margin-left:10px;">0</div>
+                                        </div>
+                                        <div class="pull-left">
+                                            <div class="pull-left" style="width:35px; line-height:1;">
+                                                <div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
+                                            </div>
+                                            <div class="pull-left" style="width:180px;">
+                                                <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+                                                        <span class="sr-only">80% Complete (danger)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right" style="margin-left:10px;">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{!--{{#each comment}}
+
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                                                <div class="review-block-name"><a href="#">{{username}}</a></div>
+                                                <div class="review-block-date">{{commentDate}}<br/></div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="review-block-rate">
+                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+                                                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+                                                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+                                                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+                                                </div>
+                                                <div class="review-block-title">{{commentTitle}}</div>
+                                                <div class="review-block-description">{{comment]}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}--}}
+                        </div>
+                        </section>
+
+                    </div>
+                    <div class="tab-pane fade" id="service-three">
+                        <section class="container">
+                            </br>
+                        </section>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
+    <br>
+    <footer class="container-fluid text-center">
+        <p>Copyright © 2017 CS 546 Final Project. All rights reserved.</p>
+        <form class="form-inline">Get deals:
+            <input type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Sign Up</button>
+        </form>
+    </footer>
+</body>
+{{!--
+</html>--}}
