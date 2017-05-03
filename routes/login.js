@@ -36,13 +36,13 @@ passport.deserializeUser(function(user, done) {
 
 router.get("/", (req, res) => {
 
-    if (req.user) {
-        console.log(req.user);
+    // if (req.user) {
+    //     console.log(req.user);
         res.redirect("home");
-    } else {
-        console.log(req.user);
-        res.render("layouts/login", { message: "Please input your username and password!" });
-    }
+    // } else {
+    //     console.log(req.user);
+    //     res.render("layouts/login", { message: "Please input your username and password!" });
+    // }
 });
 
 
