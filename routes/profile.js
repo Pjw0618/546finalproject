@@ -5,23 +5,23 @@ const User = data.users;
 const path = require('path');
 
 
-router.post('/profile',(req,res)=>{
+router.post('/profile', (req, res) => {
 
-	let id = req.user._id;
-	let name = req.body.name;
-	let hobby = req.body.hobby;
+    let id = req.user._id;
+    let name = req.body.name;
+    let hobby = req.body.hobby;
 
-	User.updateProfile(id,name,hobby).then(()=>{
-		
-		res.render('layouts/shopping');
+    User.updateProfile(id, name, hobby).then(() => {
 
-	},(reject)=>{
+        res.render('layouts/shopping');
 
-		res.render("layouts/register",{message: `${reject}`});
-	});
+    }, (reject) => {
+
+        res.render("layouts/register", { message: `${reject}` });
+    });
 
 
-    
+
 });
 
 module.exports = router;

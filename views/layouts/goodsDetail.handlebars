@@ -68,6 +68,8 @@
     <link href="http://localhost:3000/css/prod-detail.css" rel="stylesheet">
     <link href="http://localhost:3000/css/shop-homepage.css" rel="stylesheet">
     <script src="http://localhost:3000/js/backToTop.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -167,7 +169,7 @@
                             </div>
                             <span class="review-no">41 reviews</span>
                         </div>
-                        <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+                        <p class="product-description">{{goods.description}}</p>
                         <h4 class="price">current price: <span>$ {{goods.price}}</span></h4>
                         <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
                         <h5 class="sizes">sizes:
@@ -194,8 +196,7 @@
                                 <input type="text" name="cartgoodsprice" value="{{goods.price}}" hidden/>
                                 <button class="add-to-cart btn btn-default" type="submit">add to cart</button>
                             </form>
-                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-                        </div>
+                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>                        </div>
                     </div>
                 </div>
             </div>
