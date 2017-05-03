@@ -13,15 +13,29 @@ router.post('/profile',(req,res)=>{
 
 	User.updateProfile(id,name,hobby).then(()=>{
 		
-		res.render('layouts/shopping');
+		res.render('layouts/home');
 
 	},(reject)=>{
 
-		res.render("layouts/register",{message: `${reject}`});
+		res.render("layouts/userProfile",{message: "system error!"});
 	});
 
 
     
+});
+
+router.get("/profile",(req,res)=>{
+
+	if(user){
+
+		res.render("layouts/userProfile",{user:req.user});
+
+	}else{
+		res.render("layouts/login",{message:"please login first"});
+	}
+
+	
+
 });
 
 module.exports = router;
