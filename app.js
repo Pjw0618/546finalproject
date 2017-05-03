@@ -31,16 +31,14 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(flash());
+
 app.use(session({
-
-
     cookie: { maxAge: 100000 },
-
-
     secret: 'woot',
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -49,11 +47,11 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
 
-// app.get('/register', (req, res) => {
+app.get('/register', (req, res) => {
 
-//     res.render("layouts/register");
+    res.render("layouts/register");
 
-// });
+});
 
 // app.get('/profile', (req, res) => {
 

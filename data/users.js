@@ -109,6 +109,7 @@ let exportedMethods = {
             return userCollection.findOne({ username: username }).then((user) => {
                 let res = bcrypt.compareSync(password, user.hashedPassword);
                 if (!res) throw "Invalid username or password!";
+                return user;
             });
 
         }).catch((Error) => {
