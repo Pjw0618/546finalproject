@@ -13,8 +13,8 @@ router.post("/register", (req, res) => {
     }).catch((error) => {
         // var error = document.getElementById("").value;
         //res.render("layouts/login", { message: `${error}` });
-        res.send({ message: `${error}` });
+        res.render("layouts/register",{ message: `${error}` });
     });
 
-})
+});
 module.exports = router;

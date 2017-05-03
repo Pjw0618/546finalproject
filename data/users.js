@@ -5,61 +5,65 @@ const bcrypt = require('bcrypt');
 
 let exportedMethods = {
     addNewUsers(username, password) {
-        return new Promise((resolve, recject) => {
-            users().then((userCollection) => {
-                let ID = uuid.v4();
-                let newUser = {
-                    _id: ID,
-                    username: username,
-                    hashedPassword: bcrypt.hashSync(password, 10),
-                    profile: {
-                        name: "Unset",
-                        hobby: "Unset",
-                        _id: ID
-                    },
-                    order_history: [],
-                    shopping_cart: []
-                };
-                userCollection.insertOne(newUser).then(() => {
-                    return resolve(true);
-                });
+        return users().then((userCollection) => {
+            let ID = uuid.v4();
+            let newUser = {
+                _id: ID,
+                username: username,
+                hashedPassword: bcrypt.hashSync(password, 10),
+                profile: {
+                    name: "Unset",
+                    hobby: "Unset"
+                },
+                order_history: [],
+                shopping_cart: []
+            };
+            return userCollection.insertOne(newUser).then(() => {
+                return resolve(true);
             });
         }).catch((Error) => {
-            reject(Error);
+            return Promise.resolve(true);
         });
     },
+
     getAllUsers() {
-        return new Promise((resolve, recject) => {
-            return users().then((userCollection) => {
-                resolve(userCollection.find({}).toArray());
-            });
+        return users().then((userCollection) => {
+            return userCollection.find({}).toArray();
         }).catch((Error) => {
             return Promise.reject(Error);
         });
     },
 
     getUserById(id) {
-        return new Promise((resolve, recject) => {
-            return users().then((userCollection) => {
-                return userCollection.findOne({ _id: id }).then((user) => {
-                    if (!user) Promise.reject("User not found");
-                    resolve(user);
-                });
+        return users().then((userCollection) => {
+            return userCollection.findOne({ _id: id }).then((user) => {
+                if (!user) throw "User not found";
+                return user;
             });
-        }).catch((Error) => {
-            return Promise.reject(Error);
         });
     },
 
     updateProfile(id, name, hobby) {
 
-        return new Promise((resolve, recject) => {
+        return this.getUserById(id).then((currentUser) => {
 
-            if (name === undefined) return recject("name can't be null");
+            if (name === undefined) return Promise.recject("name can't be null");
+            if (hobby === undefined) return Promise.recject("hobby can't be null");
             //find name in user collection and update profile, pay attention for _id attritube
             getUserById(id).then((userCollection) => {
                 //use user collection to insert name and hobby to db
+                let updatedProfile = {
+                    name: name,
+                    hobby: hobby
+                };
 
+                let updateCommand = {
+                    $set: updatedProfile
+                };
+
+                return userCollection.updateOne({ _id: id }, updateCommand).then(() => {
+                    return resolve(true);
+                });
 
             });
         }).catch((Error) => {
@@ -71,10 +75,8 @@ let exportedMethods = {
         return users().then((userCollection) => {
             return userCollection.findOne({ username: username }).then((finded) => {
                 if (finded) {
-                    console.log("find one");
                     return Promise.reject("Username existed, please try another!");
                 }
-                console.log("new");
                 let ID = uuid.v4();
                 let newUser = {
                     _id: ID,
@@ -88,9 +90,7 @@ let exportedMethods = {
                     order_history: [],
                     shopping_cart: []
                 };
-                console.log("1");
                 return userCollection.insertOne(newUser).then(() => {
-                    console.log("2");
                     return Promise.resolve(true);
                 });
             });
@@ -107,32 +107,43 @@ let exportedMethods = {
         return users().then((userCollection) => {
 
             return userCollection.findOne({ username: username }).then((user) => {
-
-                console.log(user);
                 let res = bcrypt.compareSync(password, user.hashedPassword);
-
                 if (!res) throw "Invalid username or password!";
-
+                return user;
             });
 
         }).catch((Error) => {
-
             throw "system error";
-
         });
     },
 
-    //firstly, get user by user id and then insert order{orderid,name,time} to user collection for order history
-    updateOrder(userid,id,name){
-
-
+    updateOrder(userid, id, name) {
+        return this.getUserById(id).then((currentUser) => {
+            var d = new Date();
+            return userCollection.updateOne({ _id: userid }, {
+                $addToSet: {
+                    order_history: {
+                        name: name,
+                        date: d.getTime(),
+                        _id: id
+                    }
+                }
+            });
+        });
     },
 
-    //firstly, get user by user id and then insert order{orderid,name,time} to user collection for shopping cart
-    addToShoppingCart(userid,id,name,price){
-
-
-
+    addToShoppingCart(userid, id, name, price) {
+        return this.getUserById(id).then((currentUser) => {
+            return userCollection.updateOne({ _id: userid }, {
+                $addToSet: {
+                    shopping_cart: {
+                        name: name,
+                        price: price,
+                        _id: id
+                    }
+                }
+            });
+        });
     }
 }
 
