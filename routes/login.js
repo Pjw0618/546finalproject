@@ -15,12 +15,13 @@ passport.use(new LocalStrategy({
 
         User.getUserByUsernameAndPassword(username, password).then((user) => {
 
-
+            console.log("success");
+            
             return done(null, user);
         }, (reject) => {
             console.log("wrong!");
 
-            // return done(null, false);
+            return done(null, false);
         });
     }
 ));
@@ -36,51 +37,44 @@ passport.deserializeUser(function(user, done) {
 router.get("/", (req, res) => {
 
     if (req.user) {
-
-        res.redirect("goods");
+        console.log(req.user);
+        res.redirect("home");
     } else {
-        res.render("layouts/home", { message: "Please input your username and password!" });
+        console.log(req.user);
+        res.render("layouts/login", { message: "Please input your username and password!" });
     }
 });
 
 
-// router.post("/register",(req,res)=>{
-//     console.log("redir");
-//     res.render("layouts/register",{message:"dd"});
-
-// });
-
-// router.get("/private", (req, res, next) => {
-//     if (!req.user) {
-//         res.render("layouts/login", { message: "Please Login Firstly" });
-//     }
-//     else {
-//         console.log(req.user);
-//         res.render("layouts/private", req.user);
-//     }
-// });
 
 
-router.get('/logout', function(req, res) {
+
+router.get('/logout', (req, res)=> {
 
     req.logout();
 
-    res.redirect('/');
+    res.redirect('/home');
 });
 
 
-router.get('/login', function(req, res) {
+router.get('/login', (req, res)=> {
 
+        
     res.render('layouts/login');
+   
 });
 
+
+router.get("/home",(req,res)=>{
+    console.log(req.user);
+    res.render("layouts/home");
+
+});
 
 router.post('/login',
     passport.authenticate('local', {
         successRedirect: '/home',
-        successFlash: 'Welcome!',
         failureRedirect: '/login',
-        failureFlash: 'Invalid username or password.',
         failureFlash: true
     }));
 

@@ -31,16 +31,14 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(flash());
+
 app.use(session({
-
-
     cookie: { maxAge: 100000 },
-
-
     secret: 'woot',
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -55,16 +53,16 @@ app.get('/register', (req, res) => {
 
 });
 
-app.get('/profile', (req, res) => {
+// app.get('/profile', (req, res) => {
 
-    res.render("layouts/profile");
-});
+//     res.render("layouts/profile");
+// });
 
 
-app.get('/feedback', (req, res) => {
+// app.get('/feedback', (req, res) => {
 
-    res.render("layouts/feedback");
-});
+//     res.render("layouts/feedback");
+// });
 
 configRoutes(app);
 
