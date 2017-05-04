@@ -1,17 +1,3 @@
-{{!--<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Shopping.com</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <link href="http://localhost:3000/css/shop-homepage.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>--}}
-
 <body>
 <link href="http://localhost:3000/css/shop-homepage.css" rel="stylesheet">
 <script src="http://localhost:3000/js/home.js"></script>
@@ -54,7 +40,7 @@
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span>
-                        <strong>{{username}}</strong>
+                        <strong>{{loggedin.username}}</strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -67,31 +53,35 @@
                                         </p>
                                     </div>
                                     <div class="col-lg-8">
-                                        <p class="text-left"><strong>{{username}}</strong></p>
-                                        <p class="text-left small">{{email}}</p>
+                                        <p class="text-left"><strong>{{loggedin.username}}</strong></p>
+                                        {{!--<p class="text-left small">{{email}}</p>--}}
                                         <p class="text-left">
-                                            <a href="http://localhost:3000/userSettings" class="btn btn-primary btn-block btn-sm">Profile</a>
+                                            <a href="http://localhost:3000/userProfile" class="btn btn-primary btn-block btn-sm">Profile</a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li class="divider navbar-login-session-bg"></li>
-                         <li><a href="http://localhost:3000/userProfile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="http://localhost:3000/favorites">Favourites <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                        <li><a href="http://localhost:3000/userProfile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://localhost:3000/favorites">Favourites <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                     </ul>
                 </li>
+                    <li><a href="http://localhost:3000/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                     {{else}}
                     <li><a href="http://localhost:3000/login"><span class="glyphicon glyphicon-user"></span> Sign In / Up</a></li>
                     {{/if}}
-                    <li><a href="http://localhost:3000/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                 </ul>
 
+<<<<<<< HEAD
+=======
+                {{!--Search--}}
+>>>>>>> a0055aa52912b294ed766034eb58495d8043c77c
                 <form class="navbar-form" role="search" action="/search" method="post">
                     <div class="input-group col-xs-5">
                         <input type="text" class="form-control" placeholder="Search">
@@ -233,5 +223,3 @@ for your home.</p>
 <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
 </body>
-
-{{!--</html>--}}

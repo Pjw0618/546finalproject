@@ -162,6 +162,7 @@ router.post("/addshoppingcart", (req, res) => {
 });
 
 
+<<<<<<< HEAD
 router.get("/cart",(req,res)=>{
 
     if(!req.user){
@@ -198,22 +199,29 @@ res.render("layouts/login", { message: "please login first" });
 
 
 router.post("/goodsrate",(req,res)=>{
+=======
+router.post("/goodsrate", (req, res) => {
+>>>>>>> a0055aa52912b294ed766034eb58495d8043c77c
 
 
 
 });
 
 
-router.post("/search",(req,res)=>{
+router.post("/search", (req, res) => {
 
     let content = req.body.content;
 
-    Goods.findByName(content).then((result)=>{
+    Goods.findByName(content).then((result) => {
 
+<<<<<<< HEAD
     res.render("layouts/search",{result:result});
+=======
+        res.render("layouts/search", { result: result, loggedin: req.user });
+>>>>>>> a0055aa52912b294ed766034eb58495d8043c77c
 
 
-    }).catch((Error)=>{
+    }).catch((Error) => {
 
         console.log(Error);
 
@@ -223,9 +231,10 @@ router.post("/search",(req,res)=>{
 });
 
 
-router.get("/search",(req,res)=>{
+router.get("/search", (req, res) => {
 
-    res.render("layouts/search");
+    res.render("layouts/search", { loggedin: req.user });
+
 });
 
 // router.get("/addgoods",(req,res)=>{

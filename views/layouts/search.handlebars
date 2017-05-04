@@ -1,16 +1,218 @@
+<body class="paddingBody">
+<link href="http://localhost:3000/css/search-result.css" rel="stylesheet">
+<script src="http://localhost:3000/js/backToTop.js"></script>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+                <a class="navbar-brand" href="http://localhost:3000">Shopping.com</a>
+            </div>
+            {{!--Top Menu Items--}}
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-taggle" data-toggle="dropdown" onmouseover="">Departments</a>
+                        <ul class="dropdown-menu">
+                            {{#each Department}}
+                                <li><a id="{{departmentID}}" href="{{goods}}">{{departmentName}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-a dropdown-taggle" data-toggle="dropdown" onmouseover="">Browsing History</a>
+                        <ul class="dropdown-menu" id="browsingHistory">
+                            <li>
+                                &nbsp;
+                                </li>
+                        </ul>
+                    </li>
+                </ul>
 
-<form action="/search" method="post">
-<input type="text" name="content" /> 
+                <ul class="nav navbar-nav navbar-right">
+                    {{#if loggedin}}
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <strong>{{loggedin.username}}</strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>{{loggedin.username}}</strong></p>
+                                        {{!--<p class="text-left small">{{email}}</p>--}}
+                                        <p class="text-left">
+                                            <a href="http://localhost:3000/userProfile" class="btn btn-primary btn-block btn-sm">Profile</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider navbar-login-session-bg"></li>
+                         <li><a href="http://localhost:3000/userProfile">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:3000/favorites">Favourites <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+                    {{else}}
+                    <li><a href="http://localhost:3000/login"><span class="glyphicon glyphicon-user"></span> Sign In / Up</a></li>
+                    {{/if}}
+                    <li><a href="http://localhost:3000/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                </ul>
 
-<input type="submit" value="search" /> 
+                <form class="navbar-form" role="search" action="/searchResults" method="post">
+                    <div class="input-group col-xs-5">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
 
-</form>
-<ul>
-{{#each message}}
+    <!-- Page Content -->
+    <div class="container" style="background: white;">
 
-<li>{{this.goods}}</li>
+        <div class="row">
 
+            <div class="col-md-3">
+                <div class="funkyradio">
+                    <p class="lead">Show results for</p>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="aptRadio1" />
+                        <label for="aptRadio1">&nbsp;</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="aptRadio2" />
+                        <label for="aptRadio2">&nbsp;</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="aptRadio3" />
+                        <label for="aptRadio3">&nbsp;</label>
+                    </div><br>
 
-{{/each}}
+                    <p class="lead">Refined by</p>
+                    <p>Delivery Day</p>
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="defineCheckbox1" />
+                        <label for="defineCheckbox1">Get it by tommorow</label>
+                    </div><br>
 
-</ul>
+                    {{!--<p>Brand</p>
+                    {{#each brand}}
+                    <div class="funkyradio-info">
+                        <input type="checkbox" name="checkbox" id="{{brandID}}" />
+                        <label for="{{brandID}}">&nbsp;{{brandName}}</label>
+                    </div>
+                    {{/each}}--}}
+                    <p>Condition</p>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="conRadio1" />
+                        <label for="conRadio1">New</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="conRadio2" />
+                        <label for="conRadio2">Refurbished</label>
+                    </div>
+                    <div class="funkyradio-info">
+                        <input type="radio" name="checkbox" id="conRadio3" />
+                        <label for="conRadio3">Used</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    {{!--<ul>
+                        {{#each Product}}
+                        <li>
+                        </li>
+                        {{/each}}
+                    </ul>--}}
+                    {{#each result}}
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$ {{this.price}}</h4>
+                                <h4><a href="/goods/{{this._id}}">{{this.goods}}</a>
+                                </h4>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    <footer class="container-fluid text-center">
+        <p>Copyright © 2017 CS 546 Final Project. All rights reserved.</p>
+        <form class="form-inline">Get deals:
+            <input type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Sign Up</button>
+        </form>
+    </footer>
+</body>
