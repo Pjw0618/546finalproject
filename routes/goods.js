@@ -162,6 +162,41 @@ router.post("/addshoppingcart", (req, res) => {
 });
 
 
+router.get("/cart",(req,res)=>{
+
+    if(!req.user){
+
+        res.render("layouts/login",{message:"please login first"});
+    }else{
+
+        res.render("layouts/cart",{user:req.user});
+    }
+
+
+});
+
+
+router.get("/clearshoppingcart",(req,res)=>{
+
+if(!req.user){
+
+res.render("layouts/login", { message: "please login first" });
+
+}else{
+
+    let id = req.user._id;
+
+
+
+
+}
+
+
+
+
+});
+
+
 router.post("/goodsrate",(req,res)=>{
 
 
@@ -175,7 +210,7 @@ router.post("/search",(req,res)=>{
 
     Goods.findByName(content).then((result)=>{
 
-    res.render("layouts/search",{message:result});
+    res.render("layouts/search",{result:result});
 
 
     }).catch((Error)=>{
