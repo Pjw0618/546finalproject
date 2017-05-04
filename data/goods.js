@@ -87,8 +87,41 @@ let exportedMethods = {
 				})
 			})
 		})
-	}
+	},
 
+	findByName(name){
+
+		return Goods().then((goodsCollection)=>{
+
+			let search = new RegExp("\["+name+"\]",'i');
+
+			return goodsCollection.find({goods:search}).toArray();
+
+		});
+
+
+	},
+
+	addGoods(name){
+
+		 return Goods().then((goodCollection) => {
+
+			let goodData = {
+
+				name: name,
+				
+			};
+
+			 return goodCollection.insertOne(goodData).then(() => {
+			
+			}).catch((Error) => {
+
+				console.log(Error);
+			});
+
+		});
+
+	}
 }
 
 module.exports = exportedMethods;

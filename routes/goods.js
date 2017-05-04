@@ -168,4 +168,34 @@ router.post("/goodsrate",(req,res)=>{
 
 });
 
+
+router.post("/search",(req,res)=>{
+
+    let content = req.body.content;
+
+    Goods.findByName(content).then((result)=>{
+
+    res.render("layouts/search",{message:result});
+
+
+    }).catch((Error)=>{
+
+        console.log(Error);
+
+    });
+
+
+});
+
+
+router.get("/search",(req,res)=>{
+
+    res.render("layouts/search");
+});
+
+// router.get("/addgoods",(req,res)=>{
+
+//     res.render("layouts/addGood");
+// });
+
 module.exports = router;

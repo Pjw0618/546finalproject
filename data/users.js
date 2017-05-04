@@ -118,9 +118,9 @@ let exportedMethods = {
     },
 
     updateOrder(userid, id, name) {
-        return this.getUserById(id).then((currentUser) => {
+        return this.getUserById(userid).then((currentUser) => {
             var d = new Date();
-            return userCollection.updateOne({ _id: userid }, {
+            return currentUser.updateOne({ order_history._id: id }, {
                 $addToSet: {
                     order_history: {
                         name: name,
@@ -133,8 +133,8 @@ let exportedMethods = {
     },
 
     addToShoppingCart(userid, id, name, price) {
-        return this.getUserById(id).then((currentUser) => {
-            return userCollection.updateOne({ _id: userid }, {
+        return this.getUserById(userid).then((currentUser) => {
+            return currentUser.updateOne({ shopping_cart._id: id }, {
                 $addToSet: {
                     shopping_cart: {
                         name: name,
@@ -144,6 +144,17 @@ let exportedMethods = {
                 }
             });
         });
+    },
+
+    clearShoppingCart(userid){
+
+        return this.getUserById(userid).then((currentUser)=>{
+
+            return currentUser.
+
+
+        });
+
     }
 }
 

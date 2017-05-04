@@ -1,0 +1,16 @@
+
+<form action="/search" method="post">
+<input type="text" name="content" /> 
+
+<input type="submit" value="search" /> 
+
+</form>
+<ul>
+{{#each message}}
+
+<li>{{this.goods}}</li>
+
+
+{{/each}}
+
+</ul>
