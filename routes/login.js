@@ -16,7 +16,7 @@ passport.use(new LocalStrategy({
         User.getUserByUsernameAndPassword(username, password).then((user) => {
 
             console.log("success");
-            
+
             return done(null, user);
         }, (reject) => {
             console.log("wrong!");
@@ -38,7 +38,7 @@ router.get("/", (req, res) => {
 
     // if (req.user) {
     //     console.log(req.user);
-        res.redirect("home");
+    res.render("layouts/home", { loggedin: req.user });
     // } else {
     //     console.log(req.user);
     //     res.render("layouts/login", { message: "Please input your username and password!" });
@@ -49,7 +49,7 @@ router.get("/", (req, res) => {
 
 
 
-router.get('/logout', (req, res)=> {
+router.get('/logout', (req, res) => {
 
     req.logout();
 
@@ -57,17 +57,17 @@ router.get('/logout', (req, res)=> {
 });
 
 
-router.get('/login', (req, res)=> {
+router.get('/login', (req, res) => {
 
-        
+
     res.render('layouts/login');
-   
+
 });
 
 
-router.get("/home",(req,res)=>{
+router.get("/home", (req, res) => {
     console.log(req.user);
-    res.render("layouts/home");
+    res.render("layouts/home", { loggedin: req.user });
 
 });
 

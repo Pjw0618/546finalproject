@@ -120,40 +120,40 @@ let exportedMethods = {
     updateOrder(userid, id, name) {
         return this.getUserById(userid).then((currentUser) => {
             var d = new Date();
-            return currentUser.updateOne({ order_history._id: id }, {
-                $addToSet: {
-                    order_history: {
-                        name: name,
-                        date: d.getTime(),
-                        _id: id
-                    }
-                }
-            });
+            // return currentUser.updateOne({ order_history._id: id }, {
+            //     $addToSet: {
+            //         order_history: {
+            //             name: name,
+            //             date: d.getTime(),
+            //             _id: id
+            //         }
+            //     }
+            // });
         });
     },
 
     addToShoppingCart(userid, id, name, price) {
         return this.getUserById(userid).then((currentUser) => {
-            return currentUser.updateOne({ shopping_cart._id: id }, {
-                $addToSet: {
-                    shopping_cart: {
-                        name: name,
-                        price: price,
-                        _id: id
-                    }
-                }
-            });
+            // return currentUser.updateOne({ shopping_cart._id: id }, {
+            //     $addToSet: {
+            //         shopping_cart: {
+            //             name: name,
+            //             price: price,
+            //             _id: id
+            //         }
+            //     }
+            // });
         });
     },
 
-    clearShoppingCart(userid){
+    clearShoppingCart(userid) {
 
-        return this.getUserById(userid).then((currentUser)=>{
+        // return this.getUserById(userid).then((currentUser) => {
 
-            return currentUser.
+        //     return currentUser.
 
 
-        });
+        // });
 
     }
 }

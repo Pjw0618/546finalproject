@@ -162,23 +162,23 @@ router.post("/addshoppingcart", (req, res) => {
 });
 
 
-router.post("/goodsrate",(req,res)=>{
+router.post("/goodsrate", (req, res) => {
 
 
 
 });
 
 
-router.post("/search",(req,res)=>{
+router.post("/search", (req, res) => {
 
     let content = req.body.content;
 
-    Goods.findByName(content).then((result)=>{
+    Goods.findByName(content).then((result) => {
 
-    res.render("layouts/search",{message:result});
+        res.render("layouts/search", { result: result, loggedin: req.user });
 
 
-    }).catch((Error)=>{
+    }).catch((Error) => {
 
         console.log(Error);
 
@@ -188,9 +188,10 @@ router.post("/search",(req,res)=>{
 });
 
 
-router.get("/search",(req,res)=>{
+router.get("/search", (req, res) => {
 
-    res.render("layouts/search");
+    res.render("layouts/search", { loggedin: req.user });
+
 });
 
 // router.get("/addgoods",(req,res)=>{
