@@ -38,11 +38,7 @@ router.get("/", (req, res) => {
 
     // if (req.user) {
     //     console.log(req.user);
-<<<<<<< HEAD
     res.render("layouts/home", { loggedin: req.user });
-=======
-        res.redirect("home");
->>>>>>> 68b629824b81bc6592a5b9f596cf78ab80ae2e32
     // } else {
     //     console.log(req.user);
     //     res.render("layouts/login", { message: "Please input your username and password!" });

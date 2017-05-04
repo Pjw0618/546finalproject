@@ -11,38 +11,32 @@ router.post('/profile', (req, res) => {
     let name = req.body.name;
     let hobby = req.body.hobby;
 
+    User.updateProfile(id, name, hobby).then(() => {
 
-	router.post('/profile',(req,res)=>{
+        res.render('layouts/home');
 
-	let id = req.user._id;
-	let name = req.body.name;
-	let hobby = req.body.hobby;
+    }, (reject) => {
 
-	User.updateProfile(id,name,hobby).then(()=>{
-		
-		res.render('layouts/home');
-
-	},(reject)=>{
-
-		res.render("layouts/userProfile",{message: "system error!"});
-	});
+        res.render("layouts/userProfile", { message: "system error!" });
+    });
 
 
-    
-});
-
-router.get("/profile",(req,res)=>{
-
-	if(user){
-
-		res.render("layouts/userProfile",{user:req.user});
-
-	}else{
-		res.render("layouts/login",{message:"please login first"});
-	}
-
-	
 
 });
+
+router.get("/userProfile", (req, res) => {
+
+    if (req.user) {
+
+        res.render("layouts/userProfile", { user: req.user });
+
+    } else {
+        res.render("layouts/login", { message: "please login first" });
+    }
+
+
+
+});
+
 
 module.exports = router;
