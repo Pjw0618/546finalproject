@@ -6,22 +6,24 @@ const users = require('./users');
 
 let exportedMethods = {
 
-	createGoods(goods, description, price, department) {
+	createGoods(goods, description, price, department, url) {
 
 		return Goods().then((goodCollection) => {
 
-			let goodData = {
+			let goodsData = {
 
 				_id: uuid.v4(),
 				goods: goods,
 				description: description,
-				score: [],
+				totalScore: 0,
+				totalCount: 0,
 				price: price,
 				comments: [],
-				department: department
+				department: department,
+				url: url
 			};
 
-			return goodCollection.insertOne(goodData).then(() => {
+			return goodCollection.insertOne(goodsData).then(() => {
 
 				return Promise.resolve(true);
 
@@ -61,19 +63,29 @@ let exportedMethods = {
 		});
 	},
 
-	createCommentForGoods(id, poster, comment) {
-		return this.getGoodsById(id).then((currentGood) => {
-			return goodCollection.updateOne({ _id: id }, {
+	
+	createCommentForGoods(goodsid, poster, comment, rate) {
+		return this.getGoodsById(goodsid).then((goodCollection) => {
+			return goodCollection.updateOne({ _id: goodsid }, {
 				$addToSet: {
 					comments: {
 						poster: poster,
 						id: uuid.v4(),
+						rate: rate,
 						comment: comment
 					}
 				}
+			}).then(() => {
+				this.updateScoreCount(goodsid, rate).then(() => {
+					return Promise.resolve(true);
+				}).catch((Error) => {
+					return Promise.reject(false);
+				});
+
 			});
-		});
+		})
 	},
+
 
 	//firstly, get id by user id, and then check that user whether he or she have ordered that item, if not,
 	//he or she can't comment that good
@@ -89,6 +101,27 @@ let exportedMethods = {
 		})
 	},
 
+	updateScoreCount(goodsid, rate) {
+		return this.getGoodsById(goodsid).then((goodCollection) => {
+			let totalScore = goodCollection.totalScore + rate;
+			let totalCount = goodCollection.totalCount + 1;
+			let updatedGoods = {
+				totalScore: totalScore,
+				totalCount: totalCount
+			};
+
+			let updateCommand = {
+				$set: updatedGoods
+			};
+
+			return goodCollection.updateOne({ _id: goodsid }, updateCommand).then(() => {
+				return resolve(true);
+			});
+		}).catch((Error) => {
+			return Promise.reject(Error);
+		});
+	},
+
 	findByName(name){
 
 		return Goods().then((goodsCollection)=>{
@@ -100,6 +133,17 @@ let exportedMethods = {
 		});
 
 
+	},
+
+	getGoodsInUser(goodsId, userId) {
+		return this.getGoodsById(goodsId).then((currentGood) => {
+			return users.getUserById(userId).then((currentUser) => {
+				return Users().find({ "order_history.name": name }).then((finded) => {
+					if (finded) return Promise.resolve(true);
+					throw "Doesn't buy it yet!"
+				})
+			})
+		})
 	},
 
 	addGoods(name){
@@ -125,3 +169,4 @@ let exportedMethods = {
 }
 
 module.exports = exportedMethods;
+
