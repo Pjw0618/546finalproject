@@ -161,52 +161,38 @@ router.post("/addshoppingcart", (req, res) => {
 
 });
 
+router.get("/cart", (req, res) => {
 
-<<<<<<< HEAD
-router.get("/cart",(req,res)=>{
+    if (!req.user) {
 
-    if(!req.user){
+        res.render("layouts/login", { message: "please login first" });
+    } else {
 
-        res.render("layouts/login",{message:"please login first"});
-    }else{
-
-        res.render("layouts/cart",{user:req.user});
+        res.render("layouts/cart", { user: req.user });
     }
 
 
 });
 
 
-router.get("/clearshoppingcart",(req,res)=>{
+router.get("/clearshoppingcart", (req, res) => {
 
-if(!req.user){
+    if (!req.user) {
 
-res.render("layouts/login", { message: "please login first" });
+        res.render("layouts/login", { message: "please login first" });
 
-}else{
+    } else {
 
-    let id = req.user._id;
-
-
-
-
-}
-
-
-
+        let id = req.user._id;
+    }
 
 });
 
 
-router.post("/goodsrate",(req,res)=>{
-=======
 router.post("/goodsrate", (req, res) => {
->>>>>>> a0055aa52912b294ed766034eb58495d8043c77c
-
 
 
 });
-
 
 router.post("/search", (req, res) => {
 
@@ -214,12 +200,7 @@ router.post("/search", (req, res) => {
 
     Goods.findByName(content).then((result) => {
 
-<<<<<<< HEAD
-    res.render("layouts/search",{result:result});
-=======
         res.render("layouts/search", { result: result, loggedin: req.user });
->>>>>>> a0055aa52912b294ed766034eb58495d8043c77c
-
 
     }).catch((Error) => {
 
@@ -227,9 +208,7 @@ router.post("/search", (req, res) => {
 
     });
 
-
 });
-
 
 router.get("/search", (req, res) => {
 
