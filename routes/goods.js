@@ -165,60 +165,64 @@ router.get("/cart", (req, res) => {
 
     if (!req.user) {
 
-        res.render("layouts/login", { message: "please login first" });
-    } else {
+        router.get("/cart", (req, res) => {
 
-        res.render("layouts/cart", { user: req.user });
+            if (!req.user) {
+
+                res.render("layouts/login", { message: "please login first" });
+            } else {
+
+                res.render("layouts/cart", { user: req.user });
+            }
+
+
+        });
+
+
+        router.get("/clearshoppingcart", (req, res) => {
+
+            if (!req.user) {
+
+                res.render("layouts/login", { message: "please login first" });
+
+            } else {
+
+                let id = req.user._id;
+            }
+
+        });
+
+
+        router.post("/goodsrate", (req, res) => {
+
+
+        });
+
+        router.post("/search", (req, res) => {
+
+            let content = req.body.content;
+
+            Goods.findByName(content).then((result) => {
+
+                res.render("layouts/search", { result: result, loggedin: req.user });
+
+            }).catch((Error) => {
+
+                console.log(Error);
+
+            });
+
+        });
+
+        router.get("/search", (req, res) => {
+
+            res.render("layouts/search", { loggedin: req.user });
+
+        });
     }
-
-
 });
-
-
-router.get("/clearshoppingcart", (req, res) => {
-
-    if (!req.user) {
-
-        res.render("layouts/login", { message: "please login first" });
-
-    } else {
-
-        let id = req.user._id;
-    }
-
-});
-
-
-router.post("/goodsrate", (req, res) => {
-
-
-});
-
-router.post("/search", (req, res) => {
-
-    let content = req.body.content;
-
-    Goods.findByName(content).then((result) => {
-
-        res.render("layouts/search", { result: result, loggedin: req.user });
-
-    }).catch((Error) => {
-
-        console.log(Error);
-
-    });
-
-});
-
-router.get("/search", (req, res) => {
-
-    res.render("layouts/search", { loggedin: req.user });
-
-});
-
 // router.get("/addgoods",(req,res)=>{
 
 //     res.render("layouts/addGood");
 // });
-
 module.exports = router;

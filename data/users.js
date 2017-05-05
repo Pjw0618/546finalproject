@@ -87,7 +87,9 @@ let exportedMethods = {
                         hobby: "Unset",
                         _id: ID
                     },
+                    favorites: [],
                     order_history: [],
+                    browsing_history: [],
                     shopping_cart: []
                 };
                 return userCollection.insertOne(newUser).then(() => {
@@ -118,6 +120,10 @@ let exportedMethods = {
     },
 
     updateOrder(userid, id, name) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> c989747d7dd7deec531838f00c7559752b864382
         // return this.getUserById(userid).then((currentUser) => {
         //     var d = new Date();
         //     return currentUser.updateOne({ order_history._id: id }, {
@@ -132,6 +138,43 @@ let exportedMethods = {
         // });
     },
 
+    updateFavorite(userid, id) {
+        return this.getUserById(userid).then((userCollection) => {
+            return userCollection.updateOne({ _id: userid }, {
+                $addToSet: {
+                    favorites: {
+                        _id: id
+                    }
+                }
+            });
+        });
+    },
+
+    updateBrowsing(userid, id, name, url) {
+        return this.getUserById(userid).then((userCollection) => {
+            return userCollection.updateOne({ _id: userid }, {
+                $addToSet: {
+                    browsing_history: {
+                        name: name,
+                        _id: id,
+                        url: url
+                    }
+                }
+            });
+        });
+    },
+    removeShoppingCartFromUser(userId, goodsId) {
+        return this.getUserById(userId).then((userCollection) => {
+            return userCollection.updateOne({ _id: userId }, {
+                $pull: {
+                    shopping_cart: {
+                        id: goodsId
+                    }
+                }
+            });
+        });
+    },
+
     addToShoppingCart(userid, id, name, price) {
         // return this.getUserById(userid).then((currentUser) => {
         //     return currentUser.updateOne({ shopping_cart._id: id }, {
@@ -144,6 +187,10 @@ let exportedMethods = {
         //         }
         //     });
         // });
+<<<<<<< HEAD
+=======
+
+>>>>>>> c989747d7dd7deec531838f00c7559752b864382
         return this.getUserById(userid).then((currentUser) => {
             var d = new Date();
             // return currentUser.updateOne({ order_history._id: id }, {
@@ -170,12 +217,22 @@ let exportedMethods = {
             //     }
             // });
         });
+<<<<<<< HEAD
+=======
+
+>>>>>>> c989747d7dd7deec531838f00c7559752b864382
     },
 
     clearShoppingCart(userid) {
 
+<<<<<<< HEAD
         // return this.getUserById(userid).then((currentUser)=>{
         // return this.getUserById(userid).then((currentUser) => {
+=======
+
+        // return this.getUserById(userid).then((currentUser)=>{
+
+>>>>>>> c989747d7dd7deec531838f00c7559752b864382
         //     return currentUser.
 
 
