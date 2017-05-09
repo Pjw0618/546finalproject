@@ -110,20 +110,21 @@ router.post("/goodscomment", (req, res) => {
 
 router.post("/buy", (req, res) => {
 
-    let id = req.body.buygoodsid;
+    let goodsid = req.body.buygoodsid;
     let name = req.body.buygoodsname;
 
-    if (!req.user) {
+
+    if (!req.session.passport.user) {
 
         res.render("layouts/login", { message: "please login first" });
     } else {
 
-        Users.updateOrder(req.user._id, id, name).then(() => {
+        Users.updateOrder(req.user._id, goodsid, name).then(() => {
 
             res.render("layouts/goodsDetail", { message: "you have successfully buy this item, it's on the way" });
 
         }).catch((Error) => {
-
+            console.log(Error)
             res.render("layouts/login", { message: "please login first" });
 
         });
@@ -137,9 +138,11 @@ router.post("/buy", (req, res) => {
 router.post("/addshoppingcart", (req, res) => {
 
 
-    let id = req.body.cartgoodsid;
+    let goodsid = req.body.cartgoodsid;
     let name = req.body.cartgoodsname;
     let price = req.body.cartgoodsprice;
+
+
 
     if (!req.user) {
 
@@ -147,7 +150,7 @@ router.post("/addshoppingcart", (req, res) => {
 
     } else {
 
-        Users.addToShoppingCart(req.user._id, id, name, price).then(() => {
+        Users.addToShoppingCart(req.user._id, goodsid, name, price).then(() => {
 
             res.render("layouts/goodsDetail", { message: "you have added to shopping cart" });
 
@@ -158,6 +161,33 @@ router.post("/addshoppingcart", (req, res) => {
         });
 
     }
+
+});
+
+router.post("/addfavorite",(req,res)=>{
+
+    let goodsid = req.body.favogoodsid;
+    let name = req.body.favogoodsname;
+    let price = req.body.favogoodsprice;
+
+    if(!req.user){
+
+        res.render("layouts/login", { message: "please login first" });
+
+    }else{
+
+         Users.addToFavorite(req.user._id, goodsid, name, price).then(() => {
+
+            res.render("layouts/goodsDetail", { message: "you have added to favorite" });
+
+        }).catch((Error) => {
+
+            res.render("layouts/goodsDetail", { message: "system error, try again" });
+
+        });
+
+    }
+
 
 });
 
