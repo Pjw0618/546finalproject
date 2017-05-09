@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const data = require("../data");
 const User = data.users;
+const Departments = data.departments;
 const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -70,8 +71,15 @@ router.get('/login', (req, res) => {
 
 
 router.get("/home", (req, res) => {
+
+    Departments.getAllDepartment().then((departmentsCollection)=>{
+
+    res.render("layouts/home", { loggedin: req.user,Department:departmentsCollection });
+
+
+    });
     
-    res.render("layouts/home", { loggedin: req.user });
+    
 
 });
 

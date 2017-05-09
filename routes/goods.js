@@ -200,7 +200,7 @@ router.get("/cart",(req,res)=>{
         res.render("layouts/login",{message:"please login first"});
     }else{
 
-        res.render("layouts/cart",{user:req.user});
+        res.render("layouts/cart",{loggedin:req.user});
     }
 
 
@@ -240,6 +240,8 @@ router.post("/goodsrate", (req, res) => {
 router.post("/search", (req, res) => {
 
     let content = req.body.content;
+
+    
 
     Goods.findByName(content).then((result) => {
 

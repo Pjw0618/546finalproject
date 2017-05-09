@@ -21,7 +21,7 @@
                         <a href="#" class="dropdown-taggle" data-toggle="dropdown" onmouseover="">Departments</a>
                         <ul class="dropdown-menu">
                             {{#each Department}}
-                                <li><a id="{{departmentID}}" href="{{goods}}">{{departmentName}}</a></li>
+                                <li><a href="/goodsbydepartment/{{_id}}">{{this.department}}</a></li>
                             {{/each}}
                         </ul>
                     </li>
