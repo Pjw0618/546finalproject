@@ -9,7 +9,6 @@ router.post('/profile', (req, res) => {
 
     let id = req.user._id;
     let name = req.body.name;
-
     let hobby = req.body.hobby;
 
 
@@ -18,8 +17,6 @@ router.post('/profile', (req, res) => {
         res.render('layouts/home');
 
     }, (reject) => {
-
-
         res.render("layouts/userProfile", { message: "system error!" });
     });
 

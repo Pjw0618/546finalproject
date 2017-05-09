@@ -119,6 +119,7 @@ let exportedMethods = {
         });
     },
 
+
     updateOrder(userid, goodsid, name) {
 
         return users().then((userCollection)=>{
@@ -138,8 +139,8 @@ let exportedMethods = {
             });
          });
         });
-
     },
+
 
     updateFavorite(userid, id) {
         return this.getUserById(userid).then((userCollection) => {
@@ -178,7 +179,7 @@ let exportedMethods = {
         });
     },
 
-    addToShoppingCart(userid, goodsid, name, price) {
+ addToShoppingCart(userid, goodsid, name, price) {
 
 
          return users().then((userCollection)=>{
@@ -221,19 +222,11 @@ let exportedMethods = {
 
         });
 
-
     },
 
 
     clearShoppingCart(userid) {
 
-
-        // return this.getUserById(userid).then((currentUser)=>{
-
-        //     return currentUser.
-
-
-        // });
 
     }
 }
