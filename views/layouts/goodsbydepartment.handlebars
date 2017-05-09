@@ -1,0 +1,13 @@
+{{message}}
+
+{{#each departments}}
+        <ul>
+        <a href="/goodsbydepartment/{{_id}}"><li>{{this.department}}</li></a>
+        </ul>
+ {{/each}}
+</br></br></br></br>
+{{#each goods}}
+        <ul>
+        <a href="/goods/{{this._id}}"><li>{{this.goods}}</li></a>
+        </ul>
+ {{/each}}

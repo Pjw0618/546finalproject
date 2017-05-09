@@ -60,14 +60,17 @@ router.get('/logout', (req, res) => {
 
 router.get('/login', (req, res) => {
 
-
+    if(!req.user){
     res.render('layouts/login');
+}else{
+    res.render('layouts/login',{message:"you have loggedin!"});
+}
 
 });
 
 
 router.get("/home", (req, res) => {
-    console.log(req.user);
+    
     res.render("layouts/home", { loggedin: req.user });
 
 });

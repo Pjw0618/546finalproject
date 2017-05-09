@@ -68,7 +68,7 @@
             <li class="divider"></li>
             <li><a href="http://localhost:3000/favorites">Favourites <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
             <li class="divider"></li>
-            <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+            <li><a href="http://localhost:3000/logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                     </ul>
                 </li>
                     {{else}}
@@ -77,7 +77,7 @@
                     <li><a href="http://localhost:3000/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                 </ul>
 
-                <form class="navbar-form" role="search" action="/searchResults" method="post">
+                <form class="navbar-form" role="search" action="/search" method="post">
                     <div class="input-group col-xs-5">
                         <input type="text" class="form-control" placeholder="Search">
                         <span class="input-group-btn">
