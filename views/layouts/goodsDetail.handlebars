@@ -130,7 +130,12 @@
                                 <input type="text" name="cartgoodsprice" value="{{goods.price}}" hidden/>
                                 <button class="add-to-cart btn btn-default" type="submit">add to cart</button>
                             </form>
-                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>                        </div>
+                            <form action="/addfavorite" method="post" style="display: inline-block;">
+                            <input type="text" name="favogoodsid" value="{{goods._id}}" hidden/>
+                            <input type="text" name="favogoodsname" value="{{goods.goods}}" hidden/>
+                            <input type="text" name="favogoodsprice" value="{{goods.price}}" hidden/>
+                            <button class="like btn btn-default" type="submit"><span class="fa fa-heart"></span></button>
+                            </form>                        </div>
                     </div>
                 </div>
             </div>

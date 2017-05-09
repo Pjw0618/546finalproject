@@ -119,24 +119,28 @@ let exportedMethods = {
         });
     },
 
-    updateOrder(userid, id, name) {
-<<<<<<< HEAD
-=======
 
->>>>>>> c989747d7dd7deec531838f00c7559752b864382
-        // return this.getUserById(userid).then((currentUser) => {
-        //     var d = new Date();
-        //     return currentUser.updateOne({ order_history._id: id }, {
-        //         $addToSet: {
-        //             order_history: {
-        //                 name: name,
-        //                 date: d.getTime(),
-        //                 _id: id
-        //             }
-        //         }
-        //     });
-        // });
+    updateOrder(userid, goodsid, name) {
+
+        return users().then((userCollection)=>{
+
+        return this.getUserById(userid).then((currentUser) => {
+            var d = new Date();
+          
+            return userCollection.updateOne({_id:userid},{
+
+                $addToSet:{
+                    order_history:{
+                        _id:goodsid,
+                        date:d,
+                        name:name
+                    }
+                }
+            });
+         });
+        });
     },
+
 
     updateFavorite(userid, id) {
         return this.getUserById(userid).then((userCollection) => {
@@ -175,68 +179,54 @@ let exportedMethods = {
         });
     },
 
-    addToShoppingCart(userid, id, name, price) {
-        // return this.getUserById(userid).then((currentUser) => {
-        //     return currentUser.updateOne({ shopping_cart._id: id }, {
-        //         $addToSet: {
-        //             shopping_cart: {
-        //                 name: name,
-        //                 price: price,
-        //                 _id: id
-        //             }
-        //         }
-        //     });
-        // });
-<<<<<<< HEAD
-=======
+ addToShoppingCart(userid, goodsid, name, price) {
 
->>>>>>> c989747d7dd7deec531838f00c7559752b864382
+
+         return users().then((userCollection)=>{
+
         return this.getUserById(userid).then((currentUser) => {
-            var d = new Date();
-            // return currentUser.updateOne({ order_history._id: id }, {
-            //     $addToSet: {
-            //         order_history: {
-            //             name: name,
-            //             date: d.getTime(),
-            //             _id: id
-            //         }
-            //     }
-            // });
+          
+            return userCollection.updateOne({_id:userid},{
+
+                $addToSet:{
+                    shopping_cart:{
+                        _id:goodsid,
+                        price:price,
+                        name:name
+                    }
+                }
+            });
+         });
         });
     },
 
-    addToShoppingCart(userid, id, name, price) {
-        return this.getUserById(userid).then((currentUser) => {
-            // return currentUser.updateOne({ shopping_cart._id: id }, {
-            //     $addToSet: {
-            //         shopping_cart: {
-            //             name: name,
-            //             price: price,
-            //             _id: id
-            //         }
-            //     }
-            // });
-        });
-<<<<<<< HEAD
-=======
+    addToFavorite(userid, goodsid, name, price){
 
->>>>>>> c989747d7dd7deec531838f00c7559752b864382
+        return users().then((userCollection)=>{
+
+            return this.getUserById(userid).then((currentUser)=>{
+
+                return userCollection.updateOne({_id:userid},{
+
+                    $addToSet:{
+                        favorites:{
+                        _id:goodsid,
+                        price:price,
+                        name:name
+                    }
+
+                    }
+                });
+
+            });
+
+        });
+
     },
+
 
     clearShoppingCart(userid) {
 
-<<<<<<< HEAD
-        // return this.getUserById(userid).then((currentUser)=>{
-        // return this.getUserById(userid).then((currentUser) => {
-=======
-
-        // return this.getUserById(userid).then((currentUser)=>{
-
->>>>>>> c989747d7dd7deec531838f00c7559752b864382
-        //     return currentUser.
-
-
-        // });
 
     }
 }
