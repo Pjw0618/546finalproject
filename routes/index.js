@@ -4,6 +4,7 @@ const registerRoutes = require('./register');
 const profileRoutes = require('./profile');
 const feedbackRoutes = require('./feedback');
 const goodsRoutes = require('./goods');
+const departmentRoutes = require('./departments');
 
 const constructorMethod = (app) => {
 
@@ -12,6 +13,7 @@ const constructorMethod = (app) => {
     app.use("/", profileRoutes);
     app.use("/", feedbackRoutes);
     app.use("/", goodsRoutes);
+    app.use("/", departmentRoutes);
     //  app.use("*", (req, res) => {
     //     res.status(404).json({error: "Not found"});
     // });
