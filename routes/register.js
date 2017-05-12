@@ -3,7 +3,7 @@ const router = express.Router();
 const data = require("../data");
 const Register = data.register;
 const path = require('path');
-
+const xss = require('xss');
 
 
 router.post("/register", (req, res) => {
@@ -13,7 +13,7 @@ router.post("/register", (req, res) => {
     }).catch((error) => {
         // var error = document.getElementById("").value;
         //res.render("layouts/login", { message: `${error}` });
-        res.render("layouts/register",{ message: `${error}` });
+        res.render("layouts/register",{ message: xss(`${error}`) });
     });
 
 });

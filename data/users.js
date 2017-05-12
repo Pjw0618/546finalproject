@@ -2,6 +2,7 @@ const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.Users;
 const uuid = require('node-uuid');
 const bcrypt = require('bcrypt');
+const goods = require('./goods');
 
 let exportedMethods = {
     addNewUsers(username, password) {
@@ -154,19 +155,38 @@ let exportedMethods = {
         });
     },
 
-    updateBrowsing(userid, id, name, url) {
-        return this.getUserById(userid).then((userCollection) => {
-            return userCollection.updateOne({ _id: userid }, {
-                $addToSet: {
-                    browsing_history: {
-                        name: name,
-                        _id: id,
-                        url: url
-                    }
-                }
+    getBorwsing(userid){
+
+        // return users().then((userCollection)=>{
+
+        //     return userCollection.findOne({_id:userid}).toArray();
+        // });
+        return users().then((userCollection)=>{
+
+            return userCollection.find({_id:userid}).toArray();
+
+        });
+
+    },
+
+   updateBrowsing(userid, id) {
+        return users().then((userCollection) => {
+            return this.getUserById(userid).then(() => {
+                return goods.getGoodsById(id).then((goods) => {
+                    return userCollection.updateOne({ _id: userid }, {
+                        $addToSet: {
+                            browsing_history: {
+                                name: goods.goods,
+                                _id: goods._id,
+                                url: goods.url
+                            }
+                        }
+                    });
+                });
             });
         });
     },
+
     removeShoppingCartFromUser(userId, goodsId) {
         return this.getUserById(userId).then((userCollection) => {
             return userCollection.updateOne({ _id: userId }, {
@@ -200,6 +220,32 @@ let exportedMethods = {
         });
     },
 
+    removeShoppingCartFromUser(userId, goodsId) {
+        return this.getUserById(userId).then((userCollection) => {
+            return userCollection.updateOne({ _id: userId }, {
+                $pull: {
+                    shopping_cart: {
+                        id: goodsId
+                    }
+                }
+            });
+        });
+    },
+
+    clearShoppingCart(userid) {
+        return this.getUserById(userid).then((userCollection) => {
+            userCollection.shopping_cart = [];
+            let updateCommand = {
+                $set: userCollection
+            };
+            return userCollection.updateOne({ _id: userid }, updateCommand).then(() => {
+                return resolve(true);
+            });
+        }).catch((Error) => {
+            return Promise.reject(Error);
+        });
+    },
+
     addToFavorite(userid, goodsid, name, price){
 
         return users().then((userCollection)=>{
@@ -224,11 +270,23 @@ let exportedMethods = {
 
     },
 
+    getFavorites(userid) {
 
-    clearShoppingCart(userid) {
+        return users().then((userCollection) => {
+
+        return this.getUserById(userid).then((currentUser)=>{
+
+            return currentUser.find({browsing_history:1}).toArray();
 
 
-    }
+         });
+        });
+
+       
+    },
+
+
+    
 }
 
 module.exports = exportedMethods;

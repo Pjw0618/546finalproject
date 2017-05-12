@@ -22,7 +22,7 @@ passport.use(new LocalStrategy({
         }, (reject) => {
             console.log("wrong!");
 
-            return done(null, false,{message:'invalid username and password!'});
+            return done(null, false,{message:"invalid username and password!"});
 
         });
     }
@@ -73,8 +73,15 @@ router.get('/login', (req, res) => {
 router.get("/home", (req, res) => {
 
     Departments.getAllDepartment().then((departmentsCollection)=>{
+        if(req.user){
+            res.render("layouts/home", { loggedin: req.user,Department:departmentsCollection });
+        }else{
+            console.log(departmentsCollection);
+            res.render("layouts/home", {Department:departmentsCollection });
 
-    res.render("layouts/home", { loggedin: req.user,Department:departmentsCollection });
+        }
+
+    
 
 
     });
@@ -85,12 +92,14 @@ router.get("/home", (req, res) => {
 
 router.post('/login',
     passport.authenticate('local', {
-        successRedirect: '/home',
-        successFlash: 'Welcome!',
-        failureRedirect: '/login',
-        failureFlash: 'Invalid username or password.',
-        failureFlash: true
+         successRedirect: '/home',
+        failureRedirect: '/login', // see text
+        failureFlash: true // optional, see text as well
+       
     }));
+
+
+
 
 
 
