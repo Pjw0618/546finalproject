@@ -4,6 +4,7 @@ const data = require("../data");
 const Goods = data.goods;
 const Users = data.users;
 const path = require('path');
+const Departments = data.departments;
 
 router.post("/goods", (req, res) => {
 
@@ -58,11 +59,20 @@ router.get("/goods", (req, res) => {
 
 router.get("/goods/:id", (req, res) => {
 
+    let userid = req.user._id;
+    let id = req.params.id;
+
+
+    Users.updateBrowsing(userid, id);
+
+    Departments.getAllDepartment().then((departmentsCollection)=>{
+
     Goods.getGoodsById(req.params.id).then((good) => {
 
-        res.render('layouts/goodsDetail', { goods: good });
+        res.render('layouts/goodsDetail', { goods: good, Department:departmentsCollection});
 
     });
+});
 
 
 });
@@ -191,64 +201,114 @@ router.post("/addfavorite",(req,res)=>{
 
 });
 
-router.get("/cart", (req, res) => {
+router.get("/browsinghistory",(req,res)=>{  
 
-            if (!req.user) {
+      
 
-                res.render("layouts/login", { message: "please login first" });
-            } else {
+       if(req.user){
+       
+        res.render("layouts/borwsinghistory", { loggedin: req.user.browsing_history });
 
-                res.render("layouts/cart", { user: req.user });
-            }
+        }else{
 
+        res.render("layouts/login", { message: "please login first!" });
 
-        });
-
-
-        router.get("/clearshoppingcart", (req, res) => {
-
-            if (!req.user) {
-
-                res.render("layouts/login", { message: "please login first" });
-
-            } else {
-
-                let id = req.user._id;
-            }
-
-        });
-
-
-        router.post("/goodsrate", (req, res) => {
-
-
-        });
-
-        router.post("/search", (req, res) => {
-
-            let content = req.body.content;
-
-            Goods.findByName(content).then((result) => {
-
-                res.render("layouts/search", { result: result, loggedin: req.user });
-
-            }).catch((Error) => {
-
-                console.log(Error);
-
-            });
-
-        });
-
-        router.get("/search", (req, res) => {
-
-            res.render("layouts/search", { loggedin: req.user });
-
-        });
-    }
+        }
+     
+           
 });
+
+//need a front page to show 
+router.get("/orderhistory",(req,res)=>{
+
+     if(req.user){
+
+     res.render("layouts/orderhistory", { loggedin: req.user.order_history });
+
+     }else{
+
+     res.render("layouts/login", { message: "please login first!" });
+
+     }
+
+
+});
+
+
+router.get("/cart",(req,res)=>{
+
+    if(!req.user){
+
+        res.render("layouts/login",{message:"please login first"});
+    }else{
+
+        res.render("layouts/cart",{user:req.user});
+    }
+
+
+});
+
+
+router.get("/clearshoppingcart",(req,res)=>{
+
+if(!req.user){
+
+res.render("layouts/login", { message: "please login first" });
+
+}else{
+
+    let id = req.user._id;
+
+}
+
+
+});
+
+
+
+router.post("/goodsrate", (req, res) => {
+
+
+
+
+});
+
+
+router.post("/search", (req, res) => {
+
+    let content = req.body.content;
+
+    Departments.getAllDepartment().then((departmentsCollection)=>{
+
+    Goods.findByName(content).then((result) => {
+
+
+        res.render("layouts/search", { result: result, loggedin: req.user, Department:departmentsCollection });
+
+
+
+    }).catch((Error) => {
+
+        console.log(Error);
+
+     });
+    });
+
+});
+
+
+router.get("/search", (req, res) => {
+
+     Departments.getAllDepartment().then((departmentsCollection)=>{
+
+    res.render("layouts/search", { loggedin: req.user,Department:departmentsCollection });
+    });
+
+});
+
 // router.get("/addgoods",(req,res)=>{
 
 //     res.render("layouts/addGood");
 // });
+
 module.exports = router;

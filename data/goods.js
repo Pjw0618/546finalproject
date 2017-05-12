@@ -135,16 +135,6 @@ let exportedMethods = {
 
 	},
 
-	getGoodsInUser(goodsId, userId) {
-		return this.getGoodsById(goodsId).then((currentGood) => {
-			return users.getUserById(userId).then((currentUser) => {
-				return Users().find({ "order_history.name": name }).then((finded) => {
-					if (finded) return Promise.resolve(true);
-					throw "Doesn't buy it yet!"
-				})
-			})
-		})
-	},
 
 	addGoods(name){
 
